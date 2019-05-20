@@ -15,6 +15,11 @@ buildscript {
     }
 }
 
+ext {
+    dagger2_version = '2.21'
+    lifecycle_version = '2.0.0'
+}
+
 allprojects {
     repositories {
         google()
