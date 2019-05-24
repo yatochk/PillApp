@@ -1,38 +1,44 @@
 package com.yatochk.pillapp.view
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yatochk.pillapp.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var textMessage: TextView
+    companion object {
+        private const val WRONG_FRAGMENT = "Wrong Fragment"
+    }
+
+    private val homeFragment = HomeFragment()
+    private val medicationFragment = MedicationFragment()
+    private val measuringFragment = MeasuringFragment()
+
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                textMessage.setText(R.string.title_home)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_dashboard -> {
-                textMessage.setText(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                textMessage.setText(R.string.title_notifications)
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.main_frame,
+                when (item.itemId) {
+                    R.id.navigation_home -> {
+                        homeFragment
+                    }
+                    R.id.navigation_medication -> {
+                        medicationFragment
+                    }
+                    R.id.navigation_measuring -> {
+                        measuringFragment
+                    }
+                    else -> throw IllegalArgumentException(WRONG_FRAGMENT)
+                }
+            ).commit()
+        true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
-        textMessage = findViewById(R.id.message)
-        navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 }
