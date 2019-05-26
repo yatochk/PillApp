@@ -1,4 +1,4 @@
-package com.yatochk.pillapp.view
+package com.yatochk.pillapp.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class MedicationSchedule(
     @PrimaryKey
     val id: Int,
-    val periods: Long
+    val periods: Long,
+    val type: String
 )

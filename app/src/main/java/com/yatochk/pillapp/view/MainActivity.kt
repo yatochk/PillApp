@@ -1,13 +1,18 @@
 package com.yatochk.pillapp.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yatochk.pillapp.R
-import com.yatochk.pillapp.view.viewmodel.MainViewModel
+import com.yatochk.pillapp.dagger.MedicationApplication
+import com.yatochk.pillapp.dagger.ViewModelFactory
+import com.yatochk.pillapp.view.fragment.HomeFragment
+import com.yatochk.pillapp.view.fragment.MeasuringFragment
+import com.yatochk.pillapp.view.fragment.MedicationFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,13 +20,12 @@ class MainActivity : AppCompatActivity() {
         private const val WRONG_FRAGMENT = "Wrong Fragment"
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private val homeFragment = HomeFragment()
     private val medicationFragment = MedicationFragment()
     private val measuringFragment = MeasuringFragment()
-
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(MainViewModel::class.java)
-    }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         supportFragmentManager.beginTransaction()
@@ -43,26 +47,45 @@ class MainActivity : AppCompatActivity() {
         true
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        initialFloatingMenu()
-    }
-
-    private fun initialFloatingMenu() {
+    private fun initFloatingMenu() {
         val medicationButton = FloatingActionButton(this).apply {
             title = getString(R.string.add_medication)
+            setIcon(R.drawable.ic_home_black_24dp)
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, MedicationAddActivity::class.java))
+            }
         }
         val temperatureButton = FloatingActionButton(this).apply {
             title = getString(R.string.add_temperature)
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, TemperatureAddActivity::class.java))
+            }
         }
         val pressureButton = FloatingActionButton(this).apply {
             title = getString(R.string.add_pressure)
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, PressureAddActivity::class.java))
+            }
         }
 
         floating_menu.addButton(medicationButton)
         floating_menu.addButton(temperatureButton)
         floating_menu.addButton(pressureButton)
+    }
+
+    private fun initStartFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frame, homeFragment, HomeFragment.TAG)
+            .commit()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        (application as MedicationApplication).component.injectMainActivity(this)
+
+        nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        initFloatingMenu()
+        initStartFragment()
     }
 }

@@ -1,12 +1,13 @@
 package com.yatochk.pillapp.model.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.yatochk.pillapp.model.MedicationSchedule
 
 @Dao
 interface MedicationScheduleDao {
     @Query("SELECT * FROM MedicationSchedule")
-    fun getMedications(): List<MedicationSchedule>
+    fun getMedications(): LiveData<List<MedicationSchedule>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addSchedule(medicationSchedule: MedicationSchedule)
@@ -15,5 +16,5 @@ interface MedicationScheduleDao {
     fun updateSchedule(medicationSchedule: MedicationSchedule)
 
     @Delete
-    fun deletechedule(medicationSchedule: MedicationSchedule)
+    fun deleteSchedule(medicationSchedule: MedicationSchedule)
 }
