@@ -4,4 +4,12 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <com.yatochk.pillapp.view.DailyRecycler android:id="@+id/recycler_calendar"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="70dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_schedule"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="match_parent"/>
+
 </LinearLayout>
