@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#6699FF</color>
+    <color name="colorPrimaryDark">#003366</color>
+    <color name="colorAccent">#0033CC</color>
 
     <color name="dish_indicator">#000</color>
+    <color name="add_button_color">#fff</color>
 
     <color name="tool_text_color">#fff</color>
     <color name="tool_button_color">#fff</color>

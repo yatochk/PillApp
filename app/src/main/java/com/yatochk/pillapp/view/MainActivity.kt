@@ -53,19 +53,21 @@ class MainActivity : AppCompatActivity() {
     private fun initFloatingMenu() {
         val medicationButton = FloatingActionButton(this).apply {
             title = getString(R.string.add_medication)
-            setIcon(R.drawable.ic_home_black_24dp)
+            setIcon(R.drawable.add_medication)
             setOnClickListener {
                 startActivity(Intent(this@MainActivity, MedicationAddActivity::class.java))
             }
         }
         val temperatureButton = FloatingActionButton(this).apply {
             title = getString(R.string.add_temperature)
+            setIcon(R.drawable.add_thermometer)
             setOnClickListener {
                 startActivity(Intent(this@MainActivity, TemperatureAddActivity::class.java))
             }
         }
         val pressureButton = FloatingActionButton(this).apply {
             title = getString(R.string.add_pressure)
+            setIcon(R.drawable.add_pressure)
             setOnClickListener {
                 startActivity(Intent(this@MainActivity, PressureAddActivity::class.java))
             }
