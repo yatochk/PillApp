@@ -1,18 +1,15 @@
 package com.yatochk.pillapp.view.add_schedule
 
-import android.os.Bundle
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.view.ToolActivity
 
 class PressureAddActivity : ToolActivity() {
-
     override fun getTitleText(): String =
         getString(R.string.add_pressure_title)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (application as MedicationApplication).component.injectActivity(this)
+    override fun initActivity() {
         setContentView(R.layout.activity_add_pressure)
+        (application as MedicationApplication).component.injectActivity(this)
     }
 }

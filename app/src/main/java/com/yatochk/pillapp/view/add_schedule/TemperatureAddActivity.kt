@@ -1,23 +1,25 @@
 package com.yatochk.pillapp.view.add_schedule
 
-import android.os.Bundle
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
-import com.yatochk.pillapp.model.db.medication.MedicationScheduleRepository
+import com.yatochk.pillapp.utils.injectViewModel
+import com.yatochk.pillapp.utils.toSimpleDate
+import com.yatochk.pillapp.utils.toTime
 import com.yatochk.pillapp.view.ToolActivity
+import com.yatochk.pillapp.view.viewmodel.TemperatureAddViewModel
 import kotlinx.android.synthetic.main.activity_add_temperature.*
-import javax.inject.Inject
+import java.util.*
 
 class TemperatureAddActivity : ToolActivity() {
 
-    @Inject
-    lateinit var medicationScheduleRepository: MedicationScheduleRepository
+    private val viewModel by lazy {
+        injectViewModel(viewModelFactory) as TemperatureAddViewModel
+    }
 
     override fun getTitleText(): String =
         getString(R.string.add_temperature_title)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initActivity() {
         setContentView(R.layout.activity_add_temperature)
         (application as MedicationApplication).component.injectActivity(this)
         populateViews()
@@ -27,10 +29,11 @@ class TemperatureAddActivity : ToolActivity() {
     }
 
     private fun populateViews() {
-
+        edit_data.text = Date().toSimpleDate(this)
+        edit_time.text = Date().toTime(this)
     }
 
     private fun saveTemperature() {
-
+        viewModel.save()
     }
 }

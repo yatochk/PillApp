@@ -6,6 +6,8 @@ import com.yatochk.pillapp.model.MedicationSchedule
 import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.Temperature
 import com.yatochk.pillapp.model.db.medication.MedicationScheduleDao
+import com.yatochk.pillapp.model.db.pressure.PressureDao
+import com.yatochk.pillapp.model.db.temperature.TemperatureDao
 import com.yatochk.pillapp.utils.DATABASE_VERSION
 
 @Database(
@@ -22,4 +24,6 @@ abstract class PillDatabase : RoomDatabase() {
     }
 
     abstract val medicationScheduleDao: MedicationScheduleDao
+    abstract val temperatureDao: TemperatureDao
+    abstract val pressureDao: PressureDao
 }
