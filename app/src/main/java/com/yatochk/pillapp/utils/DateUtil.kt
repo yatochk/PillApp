@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-private fun timeFormat(context: Context) = SimpleDateFormat("HH:MM", getCurrentLocale(context))
+private fun timeFormat(context: Context) = SimpleDateFormat("hh:mm", getCurrentLocale(context))
 private fun simpleDateFormat(context: Context) = SimpleDateFormat("dd MMM", getCurrentLocale(context))
 
 private fun getCurrentLocale(context: Context): Locale {

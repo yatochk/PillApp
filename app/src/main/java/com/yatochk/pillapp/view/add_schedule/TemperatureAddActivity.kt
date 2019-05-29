@@ -22,10 +22,14 @@ class TemperatureAddActivity : ToolActivity() {
     override fun initActivity() {
         setContentView(R.layout.activity_add_temperature)
         (application as MedicationApplication).component.injectActivity(this)
-        populateViews()
         button_save_temperature.setOnClickListener {
             saveTemperature()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        populateViews()
     }
 
     private fun populateViews() {
