@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.MedicationAddActivity"/>
-        <activity android:name=".view.PressureAddActivity"/>
-        <activity android:name=".view.TemperatureAddActivity"/>
+        <activity android:name=".view.add_schedule.MedicationAddActivity"/>
+        <activity android:name=".view.add_schedule.PressureAddActivity"/>
+        <activity android:name=".view.add_schedule.TemperatureAddActivity"/>
     </application>
 
 </manifest>

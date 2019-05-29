@@ -1,3 +1,3 @@
 package com.yatochk.pillapp.utils
 
-const val DATABASE_VERSION = 1
+const val DATABASE_VERSION = 2

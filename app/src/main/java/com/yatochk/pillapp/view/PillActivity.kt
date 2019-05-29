@@ -2,4 +2,4 @@ package com.yatochk.pillapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 
-class MedicationAddActivity : AppCompatActivity()
+abstract class PillActivity : AppCompatActivity()

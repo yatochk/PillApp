@@ -3,8 +3,8 @@ package com.yatochk.pillapp.dagger.module
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.yatochk.pillapp.model.db.MedicationDatabase
-import com.yatochk.pillapp.model.db.MedicationScheduleDao
+import com.yatochk.pillapp.model.db.PillDatabase
+import com.yatochk.pillapp.model.db.medication.MedicationScheduleDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -20,11 +20,11 @@ class AppModule(private val app: Application) {
 
     @Singleton
     @Provides
-    fun provideMedicationDatabase(context: Context): MedicationDatabase =
+    fun provideMedicationDatabase(context: Context): PillDatabase =
         Room.databaseBuilder(
             context,
-            MedicationDatabase::class.java,
-            MedicationDatabase.DATABASE_NAME
+            PillDatabase::class.java,
+            PillDatabase.DATABASE_NAME
         )
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
@@ -32,6 +32,6 @@ class AppModule(private val app: Application) {
 
     @Singleton
     @Provides
-    fun provideMedicationScheduleDao(medicationScheduleDao: MedicationDatabase): MedicationScheduleDao =
-        medicationScheduleDao.medicationScheduleDao
+    fun provideMedicationScheduleDao(pillScheduleDao: PillDatabase): MedicationScheduleDao =
+        pillScheduleDao.medicationScheduleDao
 }

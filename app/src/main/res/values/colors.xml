@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="dish_indicator">#000</color>
+
+    <color name="tool_text_color">#fff</color>
+    <color name="tool_button_color">#fff</color>
+    <color name="toolbar_color">@color/colorPrimaryDark</color>
 </resources>

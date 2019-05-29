@@ -8,6 +8,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.dagger.ViewModelFactory
+import com.yatochk.pillapp.view.add_schedule.MedicationAddActivity
+import com.yatochk.pillapp.view.add_schedule.PressureAddActivity
+import com.yatochk.pillapp.view.add_schedule.TemperatureAddActivity
 import com.yatochk.pillapp.view.fragment.HomeFragment
 import com.yatochk.pillapp.view.fragment.MeasuringFragment
 import com.yatochk.pillapp.view.fragment.MedicationFragment
@@ -82,8 +85,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        (application as MedicationApplication).component.injectMainActivity(this)
-
+        (application as MedicationApplication).component.injectActivity(this)
         nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         initFloatingMenu()
         initStartFragment()

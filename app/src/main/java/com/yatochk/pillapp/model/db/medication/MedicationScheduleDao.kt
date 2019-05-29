@@ -1,4 +1,4 @@
-package com.yatochk.pillapp.model.db
+package com.yatochk.pillapp.model.db.medication
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
