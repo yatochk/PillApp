@@ -9,8 +9,8 @@ import java.util.*
 @Entity
 @TypeConverters(DateConverter::class)
 data class Pressure(
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int?,
     val top: Int,
     val bottom: Int,
     val date: Date
