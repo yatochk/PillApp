@@ -28,6 +28,10 @@ class TemperatureAddActivity : ToolActivity() {
     override fun getTitleText(): String =
         getString(R.string.add_temperature_title)
 
+    override fun onClickAccept() {
+        saveTemperature()
+    }
+
     override fun initActivity() {
         setContentView(R.layout.activity_add_temperature)
         (application as MedicationApplication).component.injectActivity(this)
