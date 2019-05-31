@@ -9,8 +9,8 @@ import java.util.*
 @Entity
 @TypeConverters(DateConverter::class)
 data class Temperature(
-    @PrimaryKey
-    val id: Int,
-    val temp: Float,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int?,
+    val temp: Double,
     val date: Date
 )

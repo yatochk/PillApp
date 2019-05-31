@@ -15,4 +15,7 @@
     <string name="tool_back_description">back</string>
     <string name="add_date">Date</string>
     <string name="add_time">Time</string>
+
+    <string name="save_message">Saved!</string>
+    <string name="not_filled_message">Before filled value</string>
 </resources>
