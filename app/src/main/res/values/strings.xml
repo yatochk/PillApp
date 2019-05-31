@@ -18,4 +18,6 @@
 
     <string name="save_message">Saved!</string>
     <string name="not_filled_message">Before filled value</string>
+    <string name="bottom_pressure">Bottom pressure</string>
+    <string name="top_pressure">Top pressure</string>
 </resources>
