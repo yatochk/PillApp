@@ -2,10 +2,7 @@ package com.yatochk.pillapp.dagger.module
 
 import androidx.lifecycle.ViewModel
 import com.yatochk.pillapp.dagger.ViewModelKey
-import com.yatochk.pillapp.view.viewmodel.HomeViewModel
-import com.yatochk.pillapp.view.viewmodel.MedicationAddViewModel
-import com.yatochk.pillapp.view.viewmodel.PressureAddViewModel
-import com.yatochk.pillapp.view.viewmodel.TemperatureAddViewModel
+import com.yatochk.pillapp.view.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -32,4 +29,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PressureAddViewModel::class)
     internal abstract fun addPressureViewModel(viewModel: PressureAddViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MeasuringViewModel::class)
+    internal abstract fun measuringViewModel(viewModel: MeasuringViewModel): ViewModel
 }

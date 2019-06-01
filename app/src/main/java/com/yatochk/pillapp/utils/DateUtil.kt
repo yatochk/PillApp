@@ -22,3 +22,9 @@ fun Calendar.toTime(context: Context): String =
 
 fun Calendar.toSimpleDate(context: Context): String =
     simpleDateFormat(context).format(this.time)
+
+fun Date.toTime(context: Context): String =
+    timeFormat(context).format(this)
+
+fun Date.toSimpleDate(context: Context): String =
+    simpleDateFormat(context).format(this)
