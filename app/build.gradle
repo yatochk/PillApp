@@ -63,5 +63,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'org.zakariya.stickyheaders:stickyheaders:0.7.10'
+    implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3'
 }

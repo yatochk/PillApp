@@ -2,12 +2,15 @@ package com.yatochk.pillapp.view.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter
 import com.yatochk.pillapp.model.Measuring
 import com.yatochk.pillapp.model.MeasuringType
 import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.Temperature
+import com.yatochk.pillapp.utils.MILLS_PER_DAY
 
-class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+    StickyRecyclerHeadersAdapter<MeasuringHeaderViewHolder> {
 
     companion object {
         private const val WRONG_VIEW_TYPE = "Wrong type of view holder"
@@ -15,14 +18,34 @@ class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val measuringList = ArrayList<Measuring>()
 
+    override fun getHeaderId(position: Int): Long =
+        when (getItemViewType(position)) {
+            MeasuringType.PRESSURE.ordinal -> (getItem(position) as Pressure).date.time / MILLS_PER_DAY
+            MeasuringType.TEMPERATURE.ordinal -> (getItem(position) as Temperature).date.time / MILLS_PER_DAY
+            else -> throw IllegalArgumentException()
+        }
+
+    override fun onCreateHeaderViewHolder(parent: ViewGroup): MeasuringHeaderViewHolder =
+        MeasuringHeaderViewHolder(parent)
+
+    override fun onBindHeaderViewHolder(p0: MeasuringHeaderViewHolder, p1: Int) =
+        when (getItemViewType(p1)) {
+            MeasuringType.PRESSURE.ordinal -> p0.bind((getItem(p1) as Pressure).date)
+            MeasuringType.TEMPERATURE.ordinal -> p0.bind((getItem(p1) as Temperature).date)
+            else -> throw IllegalArgumentException()
+        }
+
     fun updateMeasuring(newMeasuring: List<Measuring>) {
         measuringList.clear()
         measuringList.addAll(newMeasuring)
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = measuringList.size
-    private fun getItem(position: Int) = measuringList[position]
+    override fun getItemCount(): Int =
+        measuringList.size
+
+    private fun getItem(position: Int) =
+        measuringList[position]
 
     override fun getItemViewType(position: Int): Int =
         measuringList[position].type.ordinal
