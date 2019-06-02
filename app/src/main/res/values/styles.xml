@@ -9,4 +9,14 @@
     <style name="ScheduleItemText">
 
     </style>
+
+    <style name="ValuesItem">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/second_text_color</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:textColor">@color/main_text_color</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

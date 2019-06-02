@@ -7,7 +7,7 @@ import com.yatochk.pillapp.model.MeasuringType
 import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.Temperature
 
-class MeasuringsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val WRONG_VIEW_TYPE = "Wrong type of view holder"

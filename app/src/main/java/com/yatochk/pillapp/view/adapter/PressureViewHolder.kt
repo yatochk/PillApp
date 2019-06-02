@@ -16,6 +16,7 @@ class PressureViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             pressure_time.text = pressure.date.toTime(context)
             pressure_top.text = pressure.top.toString()
             pressure_bottom.text = pressure.bottom.toString()
+            pressure_pulse.text = pressure.pulse.toString()
         }
     }
 }
