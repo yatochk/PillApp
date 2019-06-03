@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#003366</color>
     <color name="colorAccent">#0033CC</color>
 
+    <color name="white">#ffffff</color>
+
     <color name="dish_indicator">#000</color>
     <color name="add_button_color">#fff</color>
 

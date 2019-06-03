@@ -28,3 +28,6 @@ fun Date.toTime(context: Context): String =
 
 fun Date.toSimpleDate(context: Context): String =
     simpleDateFormat(context).format(this)
+
+fun Date.isCurrentDay(): Boolean =
+    (this.time + DELTA_FIRST_DAY) / MILLS_PER_DAY == (Date().time + DELTA_FIRST_DAY) / MILLS_PER_DAY

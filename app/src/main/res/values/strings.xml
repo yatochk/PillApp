@@ -4,6 +4,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="title_measuring">Measuring</string>
+    <string name="title_medication">Medication</string>
+
     <string name="add_medication">Medication</string>
     <string name="add_temperature">Temperature</string>
     <string name="add_pressure">Pressure</string>
@@ -32,4 +35,6 @@
     <string name="add_ointment">Ointment</string>
     <string name="add_suppository_capsule">Candles</string>
     <string name="add_other">Other</string>
+    <string name="measuring_today">Today</string>
+    <string name="measuring_period">Period</string>
 </resources>

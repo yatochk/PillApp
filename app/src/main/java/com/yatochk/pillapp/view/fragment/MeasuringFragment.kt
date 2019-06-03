@@ -14,6 +14,7 @@ import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.adapter.MeasuringAdapter
 import com.yatochk.pillapp.view.viewmodel.MeasuringViewModel
 import kotlinx.android.synthetic.main.fragment_measuring.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class MeasuringFragment : Fragment() {
 
@@ -29,8 +30,35 @@ class MeasuringFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        button_tool_accept.visibility = View.INVISIBLE
+        button_tool_back.visibility = View.INVISIBLE
+        text_tool_title.text = getString(R.string.title_measuring)
         initRecycler()
         subscribes()
+        initToggle()
+    }
+
+    private fun initToggle() {
+        toggle_date_period.setOnCheckedChangeListener { button, isChecked ->
+            if (isChecked) {
+                toggle_today.isChecked = !isChecked
+                viewModel.period()
+                subscribes()
+            } else {
+                if (!toggle_today.isChecked)
+                    button.isChecked = !isChecked
+            }
+        }
+        toggle_today.setOnCheckedChangeListener { button, isChecked ->
+            if (isChecked) {
+                toggle_date_period.isChecked = !isChecked
+                viewModel.today()
+                subscribes()
+            } else {
+                if (!toggle_date_period.isChecked)
+                    button.isChecked = !isChecked
+            }
+        }
     }
 
     private fun initRecycler() {
