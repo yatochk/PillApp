@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
 import com.yatochk.pillapp.view.MainActivity
@@ -34,8 +35,10 @@ class MeasuringFragment : Fragment() {
 
     private fun initRecycler() {
         adapter = MeasuringAdapter()
+        val decorator = StickyRecyclerHeadersDecoration(adapter)
         recycler_measuring.layoutManager = LinearLayoutManager(activity)
         recycler_measuring.adapter = adapter
+        recycler_measuring.addItemDecoration(decorator)
     }
 
     private fun subscribes() {

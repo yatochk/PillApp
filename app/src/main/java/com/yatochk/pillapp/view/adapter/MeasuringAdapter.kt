@@ -7,6 +7,7 @@ import com.yatochk.pillapp.model.Measuring
 import com.yatochk.pillapp.model.MeasuringType
 import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.Temperature
+import com.yatochk.pillapp.utils.DELTA_FIRST_DAY
 import com.yatochk.pillapp.utils.MILLS_PER_DAY
 
 class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
@@ -20,8 +21,10 @@ class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
 
     override fun getHeaderId(position: Int): Long =
         when (getItemViewType(position)) {
-            MeasuringType.PRESSURE.ordinal -> (getItem(position) as Pressure).date.time / MILLS_PER_DAY
-            MeasuringType.TEMPERATURE.ordinal -> (getItem(position) as Temperature).date.time / MILLS_PER_DAY
+            MeasuringType.PRESSURE.ordinal ->
+                ((getItem(position) as Pressure).date.time + DELTA_FIRST_DAY) / MILLS_PER_DAY
+            MeasuringType.TEMPERATURE.ordinal ->
+                ((getItem(position) as Temperature).date.time + DELTA_FIRST_DAY) / MILLS_PER_DAY
             else -> throw IllegalArgumentException()
         }
 
