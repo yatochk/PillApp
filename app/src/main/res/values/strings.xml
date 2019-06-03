@@ -21,6 +21,7 @@
     <string name="bottom_pressure">Bottom pressure</string>
     <string name="top_pressure">Top pressure</string>
     <string name="pulse">Pulse</string>
+
     <string name="add_tablet">Tablet</string>
     <string name="add_capsule">Capsule</string>
     <string name="add_drops">Drops</string>
