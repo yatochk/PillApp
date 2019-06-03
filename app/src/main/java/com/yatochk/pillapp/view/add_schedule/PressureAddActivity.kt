@@ -57,7 +57,8 @@ class PressureAddActivity : MeasuringAddActivity() {
         viewModel.save(
             currentDate.time,
             edit_top_pressure.text.toString(),
-            edit_bottom_pressure.text.toString()
+            edit_bottom_pressure.text.toString(),
+            edit_pulse.text.toString()
         )
     }
 

@@ -22,15 +22,22 @@ class PressureAddViewModel @Inject constructor(
     fun save(
         date: Date,
         topPressure: String,
-        bottomPressure: String
+        bottomPressure: String,
+        pulse: String
     ) {
         if (topPressure.toIntOrNull() == null
             || bottomPressure.toIntOrNull() == null
+            || pulse.toIntOrNull() == null
         ) {
             mutableMessage.value = MessageType.NOT_FILLED
         } else {
             mutableMessage.value = MessageType.SAVED
-            savePressure(date, topPressure.toInt(), bottomPressure.toInt())
+            savePressure(
+                date,
+                topPressure.toInt(),
+                bottomPressure.toInt(),
+                pulse.toInt()
+            )
             mutableCancelView.value = true
         }
     }
@@ -38,13 +45,15 @@ class PressureAddViewModel @Inject constructor(
     private fun savePressure(
         date: Date,
         topPressure: Int,
-        bottomPressure: Int
+        bottomPressure: Int,
+        pulse: Int
     ) {
         pressureRepository.save(
             Pressure(
                 null,
                 topPressure,
                 bottomPressure,
+                pulse,
                 date
             )
         )

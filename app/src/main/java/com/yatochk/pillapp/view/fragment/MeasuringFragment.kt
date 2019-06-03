@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
 import com.yatochk.pillapp.view.MainActivity
-import com.yatochk.pillapp.view.adapter.MeasuringsAdapter
+import com.yatochk.pillapp.view.adapter.MeasuringAdapter
 import com.yatochk.pillapp.view.viewmodel.MeasuringViewModel
 import kotlinx.android.synthetic.main.fragment_measuring.*
 
@@ -20,7 +21,7 @@ class MeasuringFragment : Fragment() {
         injectViewModel((activity as MainActivity).viewModelFactory) as MeasuringViewModel
     }
 
-    private lateinit var adapter: MeasuringsAdapter
+    private lateinit var adapter: MeasuringAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_measuring, container, false)
@@ -33,9 +34,11 @@ class MeasuringFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        adapter = MeasuringsAdapter()
+        adapter = MeasuringAdapter()
+        val decorator = StickyRecyclerHeadersDecoration(adapter)
         recycler_measuring.layoutManager = LinearLayoutManager(activity)
         recycler_measuring.adapter = adapter
+        recycler_measuring.addItemDecoration(decorator)
     }
 
     private fun subscribes() {

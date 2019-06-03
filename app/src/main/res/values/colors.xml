@@ -10,4 +10,11 @@
     <color name="tool_text_color">#fff</color>
     <color name="tool_button_color">#fff</color>
     <color name="toolbar_color">@color/colorPrimaryDark</color>
+
+    <color name="measuring_color">@color/colorPrimary</color>
+
+    <color name="main_text_color">#333333</color>
+    <color name="second_text_color">#666666</color>
+
+    <color name="background_color">#ebffff</color>
 </resources>

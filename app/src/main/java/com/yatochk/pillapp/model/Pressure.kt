@@ -17,5 +17,6 @@ data class Pressure(
     val id: Int?,
     val top: Int,
     val bottom: Int,
+    val pulse: Int,
     val date: Date
 ) : Measuring(MeasuringType.PRESSURE)

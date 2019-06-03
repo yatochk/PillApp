@@ -3,6 +3,7 @@ package com.yatochk.pillapp.view.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.snakydesign.livedataextensions.combineLatest
+import com.snakydesign.livedataextensions.map
 import com.yatochk.pillapp.model.Measuring
 import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.Temperature
@@ -22,6 +23,16 @@ class MeasuringViewModel @Inject constructor(
         ArrayList<Measuring>().apply {
             addAll(temps)
             addAll(press)
+        }
+    }.map {
+        it.sortedBy {
+            val item = it as? Temperature
+            if (item == null) {
+                val pItem = it as Pressure
+                pItem.date.time
+            } else {
+                item.date.time
+            }
         }
     }
 
