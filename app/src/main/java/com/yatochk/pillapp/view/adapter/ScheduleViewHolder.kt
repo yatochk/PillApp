@@ -12,7 +12,7 @@ class ScheduleViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 ) {
     fun bind(medicationSchedule: MedicationSchedule) {
         with(itemView) {
-            schedule_type.text = medicationSchedule.type
+            schedule_type.text = medicationSchedule.type.name
         }
     }
 }

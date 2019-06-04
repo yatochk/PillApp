@@ -1,5 +1,5 @@
 package com.yatochk.pillapp.model
 
-enum class ScheduleType {
+enum class MedicaitonType {
     PILL
 }
