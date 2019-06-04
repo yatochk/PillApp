@@ -1,16 +1,16 @@
 package com.yatochk.pillapp.model.db
 
 import androidx.room.TypeConverter
-import com.yatochk.pillapp.model.MedicaitonType
+import com.yatochk.pillapp.model.MedicationType
 
 class MedicationTypeConverter {
     @TypeConverter
-    fun fromType(type: MedicaitonType): Int {
+    fun fromType(type: MedicationType): Int {
         return type.ordinal
     }
 
     @TypeConverter
-    fun toType(type: Int): MedicaitonType {
-        return MedicaitonType.values()[type]
+    fun toType(type: Int): MedicationType {
+        return MedicationType.values()[type]
     }
 }

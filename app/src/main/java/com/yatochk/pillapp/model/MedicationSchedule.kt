@@ -26,5 +26,5 @@ data class MedicationSchedule(
     val duration: Long,
     val startDate: Date,
     val receptionTimes: List<Long>,
-    val type: MedicaitonType
+    val type: MedicationType
 )

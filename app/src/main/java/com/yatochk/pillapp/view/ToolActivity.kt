@@ -7,6 +7,7 @@ abstract class ToolActivity : PillActivity() {
 
     protected abstract fun getTitleText(): String
     protected open fun onClickAccept() {}
+    protected open fun onClickBack() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +18,7 @@ abstract class ToolActivity : PillActivity() {
     private fun initToolbar() {
         text_tool_title.text = getTitleText()
         button_tool_back.setOnClickListener {
+            onClickBack()
             finish()
         }
         button_tool_accept.setOnClickListener {
