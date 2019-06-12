@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
+import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.adapter.MeasuringAdapter
 import com.yatochk.pillapp.view.viewmodel.MeasuringViewModel
@@ -17,6 +17,10 @@ import kotlinx.android.synthetic.main.fragment_measuring.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class MeasuringFragment : Fragment() {
+
+    companion object {
+        const val TAG = "measuringFragment"
+    }
 
     private val viewModel by lazy {
         injectViewModel((activity as MainActivity).viewModelFactory) as MeasuringViewModel
@@ -70,11 +74,8 @@ class MeasuringFragment : Fragment() {
     }
 
     private fun subscribes() {
-        viewModel.measuring.observe(
-            this,
-            Observer {
-                adapter.updateMeasuring(it)
-            }
-        )
+        viewModel.measuring.observe(this) {
+            adapter.updateMeasuring(it)
+        }
     }
 }

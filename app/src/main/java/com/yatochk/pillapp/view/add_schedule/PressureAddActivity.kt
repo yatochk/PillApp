@@ -1,11 +1,11 @@
 package com.yatochk.pillapp.view.add_schedule
 
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MessageType
 import com.yatochk.pillapp.utils.injectViewModel
+import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.utils.toSimpleDate
 import com.yatochk.pillapp.utils.toTime
 import com.yatochk.pillapp.view.viewmodel.PressureAddViewModel
@@ -64,28 +64,22 @@ class PressureAddActivity : MeasuringAddActivity() {
 
     private fun subscribes() {
         with(viewModel) {
-            cancelView.observe(
-                this@PressureAddActivity,
-                Observer {
-                    finish()
-                }
-            )
+            cancelView.observe(this@PressureAddActivity) {
+                finish()
+            }
 
-            message.observe(
-                this@PressureAddActivity,
-                Observer { type ->
-                    Toast.makeText(
-                        this@PressureAddActivity,
-                        getString(
-                            when (type!!) {
-                                MessageType.SAVED -> R.string.save_message
-                                MessageType.NOT_FILLED -> R.string.not_filled_message
-                            }
-                        ),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            )
+            message.observe(this@PressureAddActivity) { type ->
+                Toast.makeText(
+                    this@PressureAddActivity,
+                    getString(
+                        when (type) {
+                            MessageType.SAVED -> R.string.save_message
+                            MessageType.NOT_FILLED -> R.string.not_filled_message
+                        }
+                    ),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }

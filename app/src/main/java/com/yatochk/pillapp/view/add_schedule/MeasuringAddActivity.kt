@@ -9,8 +9,8 @@ abstract class MeasuringAddActivity : ToolActivity() {
 
     protected var currentDate: Calendar = Calendar.getInstance()
 
-    protected abstract fun onUpdateTime()
-    protected abstract fun onUpdateDate()
+    protected open fun onUpdateTime() {}
+    protected open fun onUpdateDate() {}
 
     protected fun requestDate() {
         DatePickerDialog(
@@ -19,8 +19,7 @@ abstract class MeasuringAddActivity : ToolActivity() {
             currentDate.get(Calendar.YEAR),
             currentDate.get(Calendar.MONTH),
             currentDate.get(Calendar.DAY_OF_MONTH)
-        )
-            .show()
+        ).show()
     }
 
     protected fun requestTime() {
@@ -28,7 +27,8 @@ abstract class MeasuringAddActivity : ToolActivity() {
             this,
             timeSetListener,
             currentDate.get(Calendar.HOUR_OF_DAY),
-            currentDate.get(Calendar.MINUTE), true
+            currentDate.get(Calendar.MINUTE),
+            true
         ).show()
     }
 

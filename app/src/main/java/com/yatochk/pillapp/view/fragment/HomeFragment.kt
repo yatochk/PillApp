@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
+import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.adapter.SchedulesAdapter
 import com.yatochk.pillapp.view.viewmodel.HomeViewModel
@@ -38,11 +38,8 @@ class HomeFragment : Fragment() {
         adapter = SchedulesAdapter()
         recycler_schedule.adapter = adapter
         recycler_schedule.layoutManager = LinearLayoutManager(activity)
-        viewModel.schedules.observe(
-            this,
-            Observer {
-                adapter.submitList(it)
-            }
-        )
+        viewModel.schedules.observe(this) {
+            adapter.submitList(it)
+        }
     }
 }

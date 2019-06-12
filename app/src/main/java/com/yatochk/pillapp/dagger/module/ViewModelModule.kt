@@ -39,4 +39,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewCourseViewModel::class)
     internal abstract fun newCourseViewModel(viewModel: NewCourseViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MedicationViewModel::class)
+    internal abstract fun newMedicationViewModel(viewModel: MedicationViewModel): ViewModel
 }

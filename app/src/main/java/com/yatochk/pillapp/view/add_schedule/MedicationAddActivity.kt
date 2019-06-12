@@ -31,6 +31,8 @@ class MedicationAddActivity : ToolActivity() {
         add_other.setOnClickListener { goNext(MedicationType.OTHER) }
     }
 
-    private fun goNext(type: MedicationType) =
+    private fun goNext(type: MedicationType) {
         startActivity(NewCourseActivity.newIntent(this, type))
+        finish()
+    }
 }

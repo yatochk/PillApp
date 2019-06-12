@@ -10,6 +10,6 @@ class ListTypeConverter {
 
     @TypeConverter
     fun toType(list: String): List<Long> {
-        return list.split(",").map { it.toLong() }
+        return list.split(", ").map { it.toLong() }
     }
 }

@@ -18,13 +18,13 @@ import java.util.*
 data class MedicationSchedule(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
-    val name: String,
-    val dosage: Int,
-    val countInDay: Int,
-    val periods: Long,
-    val dependencyOfEat: MedicationEat,
-    val duration: Long,
-    val startDate: Date,
-    val receptionTimes: List<Long>,
-    val type: MedicationType
+    var name: String,
+    var dosage: Int,
+    var countInDay: Int,
+    var periods: Long,
+    var dependencyOfEat: MedicationEat,
+    var duration: Long,
+    var startDate: Date,
+    var receptionTimes: List<Long>,
+    var type: MedicationType
 )
