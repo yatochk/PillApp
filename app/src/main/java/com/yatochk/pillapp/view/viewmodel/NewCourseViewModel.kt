@@ -28,7 +28,7 @@ class NewCourseViewModel @Inject constructor(
             countInDay = 3,
             periods = 0,
             dependencyOfEat = MedicationEat.AFTER,
-            duration = 0,
+            endDate = Date(),
             startDate = Date(),
             receptionTimes = getDefaultTimes(),
             type = medicationType

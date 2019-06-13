@@ -41,6 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="64dp"/>
             </LinearLayout>
+
             <LinearLayout
                     style="@style/EditMedicationValue"
                     android:id="@+id/edit_dose"
@@ -59,6 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
+
             <LinearLayout
                     style="@style/EditMedicationValue"
                     android:id="@+id/edit_in_day"
@@ -77,6 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
+
             <LinearLayout
                     style="@style/EditMedicationValue"
                     android:id="@+id/edit_period"
@@ -94,6 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
+
             <LinearLayout
                     style="@style/EditMedicationValue"
                     android:id="@+id/edit_eat"
@@ -112,24 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
-            <LinearLayout
-                    style="@style/EditMedicationValue"
-                    android:id="@+id/edit_duration"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent">
-                <TextView
-                        android:id="@+id/medication_value_duration"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:text="@string/text_duration"
-                        style="@style/EditMedicationText"
-                        android:layout_height="match_parent"/>
-                <ImageView
-                        android:layout_marginEnd="16dp"
-                        app:srcCompat="@drawable/ic_play"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-            </LinearLayout>
+
             <LinearLayout
                     style="@style/EditMedicationValue"
                     android:id="@+id/edit_start"
@@ -148,11 +135,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
+
+            <LinearLayout
+                    style="@style/EditMedicationValue"
+                    android:id="@+id/edit_end"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent">
+                <TextView
+                        android:id="@+id/medication_value_end"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:text="@string/text_end"
+                        style="@style/EditMedicationText"
+                        android:layout_height="match_parent"/>
+                <ImageView
+                        android:layout_marginEnd="16dp"
+                        app:srcCompat="@drawable/ic_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content">
-                <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_day_times"
-                                                           android:layout_width="match_parent"
-                                                           android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_day_times"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

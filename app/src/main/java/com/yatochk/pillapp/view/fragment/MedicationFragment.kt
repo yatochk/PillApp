@@ -10,7 +10,7 @@ import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
 import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
-import com.yatochk.pillapp.view.adapter.SchedulesAdapter
+import com.yatochk.pillapp.view.adapter.MedicationAdapter
 import com.yatochk.pillapp.view.viewmodel.MedicationViewModel
 import kotlinx.android.synthetic.main.fragment_medication.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -24,7 +24,7 @@ class MedicationFragment : Fragment() {
         injectViewModel((activity as MainActivity).viewModelFactory) as MedicationViewModel
     }
 
-    private lateinit var adapter: SchedulesAdapter
+    private lateinit var adapter: MedicationAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_medication, container, false)
@@ -39,7 +39,7 @@ class MedicationFragment : Fragment() {
     }
 
     private fun initList() {
-        adapter = SchedulesAdapter()
+        adapter = MedicationAdapter()
         recycler_medication.adapter = adapter
         recycler_medication.layoutManager = LinearLayoutManager(activity)
         viewModel.schedules.observe(this) {

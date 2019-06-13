@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         recycler_schedule.adapter = adapter
         recycler_schedule.layoutManager = LinearLayoutManager(activity)
         viewModel.schedules.observe(this) {
-            adapter.submitList(it)
+            adapter.updateList(it)
         }
     }
 }

@@ -47,7 +47,10 @@
     <string name="on_eat">In time of eat</string>
 
     <string name="whatever_eat">Whatever eat</string>
-    <string name="text_duration">Duration %1$s</string>
+    <string name="text_end">End %1$s in %2$s</string>
     <string name="text_start_in">Start %1$s in %2$s</string>
     <string name="hint_name">Name</string>
+    <string name="complete_course">Complete</string>
+    <string name="change_course">Change</string>
+    <string name="delete_course">Delete</string>
 </resources>

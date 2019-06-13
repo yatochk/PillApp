@@ -5,6 +5,11 @@ import androidx.recyclerview.widget.ListAdapter
 import com.yatochk.pillapp.model.MedicationSchedule
 
 class SchedulesAdapter : ListAdapter<MedicationSchedule, ScheduleViewHolder>(SchedulesDiff()) {
+
+    fun updateList(newSchedule: List<MedicationSchedule>) {
+
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder =
         ScheduleViewHolder(parent)
 

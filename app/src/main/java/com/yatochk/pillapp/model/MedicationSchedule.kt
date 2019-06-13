@@ -23,7 +23,7 @@ data class MedicationSchedule(
     var countInDay: Int,
     var periods: Long,
     var dependencyOfEat: MedicationEat,
-    var duration: Long,
+    var endDate: Date,
     var startDate: Date,
     var receptionTimes: List<Long>,
     var type: MedicationType

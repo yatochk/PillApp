@@ -9,10 +9,12 @@ import com.yatochk.pillapp.model.MedicationSchedule
 import com.yatochk.pillapp.model.MedicationType
 import com.yatochk.pillapp.utils.*
 import com.yatochk.pillapp.view.MainActivity
+import com.yatochk.pillapp.view.RequestDateTime
+import com.yatochk.pillapp.view.ToolActivity
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
 
-class NewCourseActivity : MeasuringAddActivity() {
+class NewCourseActivity : ToolActivity() {
 
     companion object {
         private const val MEDICATION_TYPE = "medicationType"
@@ -26,6 +28,8 @@ class NewCourseActivity : MeasuringAddActivity() {
     private val viewModel by lazy {
         injectViewModel(viewModelFactory) as NewCourseViewModel
     }
+
+    private lateinit var dateRequester: RequestDateTime
 
     override fun getTitleText(): String =
         getString(R.string.title_new_course)
@@ -45,6 +49,7 @@ class NewCourseActivity : MeasuringAddActivity() {
             finish()
         }
         initButtons()
+        dateRequester = RequestDateTime(this)
     }
 
     private fun initButtons() {
@@ -52,7 +57,18 @@ class NewCourseActivity : MeasuringAddActivity() {
             viewModel.save()
         }
         edit_start.setOnClickListener {
-            requestDate()
+            dateRequester.listener = {
+                medicationSchedule.startDate = it.time
+                viewModel.update(medicationSchedule)
+            }
+            dateRequester.request()
+        }
+        edit_end.setOnClickListener {
+            dateRequester.listener = {
+                medicationSchedule.endDate = it.time
+                viewModel.update(medicationSchedule)
+            }
+            dateRequester.request()
         }
         medication_name.addTextChangedListener(object : PillTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
@@ -62,15 +78,6 @@ class NewCourseActivity : MeasuringAddActivity() {
                 }
             }
         })
-    }
-
-    override fun onUpdateDate() {
-        requestTime()
-    }
-
-    override fun onUpdateTime() {
-        medicationSchedule.startDate = currentDate.time
-        viewModel.update(medicationSchedule)
     }
 
     private fun populateView(medicationSchedule: MedicationSchedule) {
@@ -83,6 +90,11 @@ class NewCourseActivity : MeasuringAddActivity() {
             R.string.text_start_in,
             schedule.startDate.toTime(this),
             schedule.startDate.toSimpleDate(this)
+        )
+        medication_value_end.text = getString(
+            R.string.text_end,
+            schedule.endDate.toTime(this),
+            schedule.endDate.toSimpleDate(this)
         )
         medication_value_in_day.text = getString(
             R.string.count_in_day,
