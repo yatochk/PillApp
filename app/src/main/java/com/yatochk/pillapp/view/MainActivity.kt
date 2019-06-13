@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yatochk.pillapp.R
@@ -38,27 +37,23 @@ class MainActivity : AppCompatActivity() {
     private val medicationFragment = MedicationFragment()
     private val measuringFragment = MeasuringFragment()
 
-    private var oldFragment: Fragment = homeFragment
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        val newFragment = when (item.itemId) {
-            R.id.navigation_home -> {
-                homeFragment
-            }
-            R.id.navigation_medication -> {
-                medicationFragment
-            }
-            R.id.navigation_measuring -> {
-                measuringFragment
-            }
-            else -> throw IllegalArgumentException(WRONG_FRAGMENT)
-        }
-        if (oldFragment != newFragment) {
-            supportFragmentManager.beginTransaction()
-                .hide(oldFragment)
-                .show(newFragment)
-                .commit()
-            oldFragment = newFragment
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.main_frame,
+                when (item.itemId) {
+                    R.id.navigation_home -> {
+                        homeFragment
+                    }
+                    R.id.navigation_medication -> {
+                        medicationFragment
+                    }
+                    R.id.navigation_measuring -> {
+                        measuringFragment
+                    }
+                    else -> throw IllegalArgumentException(WRONG_FRAGMENT)
+                }
+            ).commit()
         true
     }
 
@@ -92,8 +87,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStartFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_frame, measuringFragment, MeasuringFragment.TAG)
-            .add(R.id.main_frame, medicationFragment, MedicationFragment.TAG)
             .add(R.id.main_frame, homeFragment, HomeFragment.TAG)
             .commit()
     }

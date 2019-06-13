@@ -7,7 +7,7 @@ import com.yatochk.pillapp.model.MedicationSchedule
 class SchedulesAdapter : ListAdapter<MedicationSchedule, ScheduleViewHolder>(SchedulesDiff()) {
 
     fun updateList(newSchedule: List<MedicationSchedule>) {
-
+        submitList(newSchedule)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder =
