@@ -92,19 +92,7 @@ class NewCourseActivity : MeasuringAddActivity() {
 
     private fun populateIcon(medicationSchedule: MedicationSchedule) {
         medication_icon.setImageResource(
-            when (medicationSchedule.type) {
-                MedicationType.TABLET -> R.drawable.ic_tablet
-                MedicationType.CAPSULE -> R.drawable.ic_pills
-                MedicationType.DROPS -> R.drawable.ic_drop
-                MedicationType.INJECTION -> R.drawable.ic_inject
-                MedicationType.MIXTURE -> R.drawable.ic_mixture
-                MedicationType.SPRAY -> R.drawable.ic_spray
-                MedicationType.POWDER -> R.drawable.ic_powder
-                MedicationType.OINTMENT -> R.drawable.ic_ointment
-                MedicationType.CANDLES -> R.drawable.ic_suppository_capsule
-                MedicationType.OTHER -> R.drawable.ic_star
-            }
+            medicationSchedule.type.getIcon()
         )
     }
-
 }

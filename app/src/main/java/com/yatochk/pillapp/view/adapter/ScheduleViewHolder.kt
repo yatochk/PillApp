@@ -13,6 +13,7 @@ class ScheduleViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     fun bind(medicationSchedule: MedicationSchedule) {
         with(itemView) {
             schedule_name.text = medicationSchedule.name
+            schedule_icon.setImageResource(medicationSchedule.type.getIcon())
         }
     }
 }
