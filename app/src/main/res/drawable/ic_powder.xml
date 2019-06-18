@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp"
+        android:viewportHeight="464" android:viewportWidth="464" android:width="24dp">
+    <path android:fillColor="@color/add_medication_color"
+          android:pathData="m432,128c0,-13.254 -14.328,-24 -32,-24s-32,10.746 -32,24 14.328,24 32,24 32,-10.746 32,-24zM432,128"/>
+    <path android:fillColor="@color/add_medication_color"
+          android:pathData="m304,72c0,13.254 -10.746,24 -24,24h-8v64h8c13.254,0 24,10.746 24,24s10.746,24 24,24h136v-160h-136c-13.254,0 -24,10.746 -24,24zM400,88c26.473,0 48,17.945 48,40s-21.527,40 -48,40 -48,-17.945 -48,-40 21.527,-40 48,-40zM400,88"/>
+    <path android:fillColor="@color/add_medication_color"
+          android:pathData="m232,168h24v-80h-24c-4.418,0 -8,3.582 -8,8v64c0,4.418 3.582,8 8,8zM232,168"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m160,312h16v16h-16zM160,312"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m128,288h16v16h-16zM128,288"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m88,304h16v16h-16zM88,304"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m200,288h16v16h-16zM200,288"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m144,240h16v16h-16zM144,240"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m192,232h16v16h-16zM192,232"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m160,208h16v16h-16zM160,208"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m192,192h16v16h-16zM192,192"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m168,272h16v16h-16zM168,272"/>
+    <path android:fillColor="@color/add_medication_color" android:pathData="m104,264h16v16h-16zM104,264"/>
+    <path android:fillColor="@color/add_medication_color"
+          android:pathData="m237.344,400c-28.508,-29.781 -67.988,-46.555 -109.215,-46.398h-0.09c-41.195,-0.129 -80.645,16.641 -109.137,46.398h-18.902v16h264v-16zM184,376h16v16h-16zM152,368h16v16h-16zM120,376h16v16h-16zM96,360h16v16h-16zM64,376h16v16h-16zM64,376"/>
+</vector>

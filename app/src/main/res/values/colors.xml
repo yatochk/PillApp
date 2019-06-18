@@ -4,8 +4,12 @@
     <color name="colorPrimaryDark">#003366</color>
     <color name="colorAccent">#0033CC</color>
 
+    <color name="white">#ffffff</color>
+
     <color name="dish_indicator">#000</color>
     <color name="add_button_color">#fff</color>
+
+    <color name="add_medication_color">@color/colorAccent</color>
 
     <color name="tool_text_color">#fff</color>
     <color name="tool_button_color">#fff</color>
@@ -17,4 +21,7 @@
     <color name="second_text_color">#666666</color>
 
     <color name="background_color">#ebffff</color>
+
+    <color name="activated_item">@color/colorPrimaryDark</color>
+    <color name="not_activated_item">@color/colorPrimary</color>
 </resources>

@@ -24,6 +24,8 @@
         <activity android:name=".view.add_schedule.MedicationAddActivity"/>
         <activity android:name=".view.add_schedule.PressureAddActivity"/>
         <activity android:name=".view.add_schedule.TemperatureAddActivity"/>
+        <activity android:name=".view.add_schedule.NewCourseActivity"
+                  android:windowSoftInputMode="adjustNothing"/>
     </application>
 
 </manifest>

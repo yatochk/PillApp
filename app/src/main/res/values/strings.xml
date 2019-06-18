@@ -4,6 +4,11 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="title_measuring">Measuring</string>
+    <string name="title_medication">Medication</string>
+    <string name="title_new_course">New course</string>
+    <string name="title_edit_course">Edit course</string>
+
     <string name="add_medication">Medication</string>
     <string name="add_temperature">Temperature</string>
     <string name="add_pressure">Pressure</string>
@@ -21,4 +26,32 @@
     <string name="bottom_pressure">Bottom pressure</string>
     <string name="top_pressure">Top pressure</string>
     <string name="pulse">Pulse</string>
+
+    <string name="add_tablet">Tablet</string>
+    <string name="add_capsule">Capsule</string>
+    <string name="add_drops">Drops</string>
+    <string name="add_injection">Injection</string>
+    <string name="add_mixture">Mixture</string>
+    <string name="add_spray">Spray</string>
+    <string name="add_powder">Powder</string>
+    <string name="add_ointment">Ointment</string>
+    <string name="add_suppository_capsule">Candles</string>
+    <string name="add_other">Other</string>
+    <string name="measuring_today">Today</string>
+    <string name="measuring_period">Period</string>
+
+    <string name="dosage">Dosage</string>
+    <string name="count_in_day">%1$s times in day</string>
+
+    <string name="before_eat">Before eat</string>
+    <string name="after_eat">After eat</string>
+    <string name="on_eat">In time of eat</string>
+
+    <string name="whatever_eat">Whatever eat</string>
+    <string name="text_end">End %1$s in %2$s</string>
+    <string name="text_start_in">Start %1$s in %2$s</string>
+    <string name="hint_name">Name</string>
+    <string name="complete_course">Complete</string>
+    <string name="change_course">Change</string>
+    <string name="delete_course">Delete</string>
 </resources>

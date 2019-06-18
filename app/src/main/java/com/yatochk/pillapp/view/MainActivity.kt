@@ -1,5 +1,6 @@
 package com.yatochk.pillapp.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val WRONG_FRAGMENT = "Wrong Fragment"
+
+        fun newIntent(context: Context) =
+            Intent(context, MainActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
     }
 
     @Inject
@@ -80,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStartFragment() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frame, homeFragment, HomeFragment.TAG)
+            .add(R.id.main_frame, homeFragment, HomeFragment.TAG)
             .commit()
     }
 

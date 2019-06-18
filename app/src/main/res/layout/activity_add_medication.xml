@@ -1,16 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <include
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/toolbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_tablet"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_tablet"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_tablet"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_capsule"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_pills"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_capsule"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_drops"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_drop"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_drops"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_injection"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_inject"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_injection"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_mixture"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_mixture"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_mixture"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_spray"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_spray"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_spray"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_powder"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_powder"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_powder"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_ointment"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_ointment"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_ointment"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_suppository"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_suppository_capsule"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_suppository_capsule"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/add_other"
+                        style="@style/MedicationCard">
+
+                    <LinearLayout android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:padding="12dp"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent">
+
+                        <ImageView app:srcCompat="@drawable/ic_star"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   tools:ignore="ContentDescription"/>
+
+                        <TextView android:layout_marginStart="12dp"
+                                  style="@style/AddMedicationName"
+                                  android:text="@string/add_other"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

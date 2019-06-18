@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:background="@color/background_color"
+              android:paddingBottom="8dp"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
+    <include
+            layout="@layout/toolbar"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ToggleButton
+                android:id="@+id/toggle_today"
+                android:background="@drawable/toggle_date_bg"
+                android:textAllCaps="false"
+                android:textOff="@string/measuring_today"
+                android:textOn="@string/measuring_today"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <ToggleButton
+                android:id="@+id/toggle_date_period"
+                android:checked="true"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textOn="@string/measuring_period"
+                android:textOff="@string/measuring_period"
+                android:background="@drawable/toggle_date_bg"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
             android:paddingTop="12dp"

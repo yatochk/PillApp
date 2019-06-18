@@ -9,6 +9,7 @@ import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.Temperature
 import com.yatochk.pillapp.model.db.pressure.PressureRepository
 import com.yatochk.pillapp.model.db.temperature.TemperatureRepository
+import com.yatochk.pillapp.utils.isCurrentDay
 import javax.inject.Inject
 
 class MeasuringViewModel @Inject constructor(
@@ -16,7 +17,7 @@ class MeasuringViewModel @Inject constructor(
     pressureRepository: PressureRepository
 ) : ViewModel() {
 
-    val measuring: LiveData<List<Measuring>> = combineLatest(
+    private val sourceMeasuring = combineLatest(
         temperatureRepository.getRecords(),
         pressureRepository.getRecords()
     ) { temps: List<Temperature>, press: List<Pressure> ->
@@ -24,8 +25,8 @@ class MeasuringViewModel @Inject constructor(
             addAll(temps)
             addAll(press)
         }
-    }.map {
-        it.sortedBy {
+    }.map { list ->
+        list.sortedBy {
             val item = it as? Temperature
             if (item == null) {
                 val pItem = it as Pressure
@@ -36,4 +37,23 @@ class MeasuringViewModel @Inject constructor(
         }
     }
 
+    var measuring: LiveData<List<Measuring>> = sourceMeasuring
+
+    fun today() {
+        measuring = sourceMeasuring.map { list ->
+            list.filter {
+                val item = it as? Temperature
+                if (item == null) {
+                    val pItem = it as Pressure
+                    pItem.date.isCurrentDay()
+                } else {
+                    item.date.isCurrentDay()
+                }
+            }
+        }
+    }
+
+    fun period() {
+        measuring = sourceMeasuring
+    }
 }
