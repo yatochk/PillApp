@@ -39,7 +39,9 @@ class MedicationFragment : Fragment() {
     }
 
     private fun initList() {
-        adapter = MedicationAdapter()
+        adapter = MedicationAdapter { clickType, medicationSchedule ->
+            viewModel.interactSchedule(clickType, medicationSchedule)
+        }
         recycler_medication.adapter = adapter
         recycler_medication.layoutManager = LinearLayoutManager(activity)
         viewModel.schedules.observe(this) {

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_scheduler.view.schedule_name
 class MedicationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.item_medication, parent, false)
 ) {
-    fun bind(medicationSchedule: MedicationSchedule) {
+    fun bind(medicationSchedule: MedicationSchedule, listener: (ClickType) -> Unit) {
         with(itemView) {
             schedule_name.text = medicationSchedule.name
             schedule_icon.setImageResource(medicationSchedule.type.getIcon())
@@ -24,6 +24,15 @@ class MedicationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
                     else
                         View.GONE
             }
+            button_complete.setOnClickListener { listener(ClickType.COMPLETE) }
+            button_change.setOnClickListener { listener(ClickType.CHANGE) }
+            button_delete.setOnClickListener { listener(ClickType.DELETE) }
         }
+    }
+
+    enum class ClickType {
+        COMPLETE,
+        CHANGE,
+        DELETE
     }
 }

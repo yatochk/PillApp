@@ -34,6 +34,10 @@ class NewCourseActivity : ToolActivity() {
     override fun getTitleText(): String =
         getString(R.string.title_new_course)
 
+    override fun onClickAccept() {
+        viewModel.save()
+    }
+
     private lateinit var medicationSchedule: MedicationSchedule
     override fun initActivity() {
         setContentView(R.layout.activity_new_course)
