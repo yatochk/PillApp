@@ -7,6 +7,7 @@
     <string name="title_measuring">Measuring</string>
     <string name="title_medication">Medication</string>
     <string name="title_new_course">New course</string>
+    <string name="title_edit_course">Edit course</string>
 
     <string name="add_medication">Medication</string>
     <string name="add_temperature">Temperature</string>

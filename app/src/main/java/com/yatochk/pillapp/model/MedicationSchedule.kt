@@ -6,6 +6,7 @@ import androidx.room.TypeConverters
 import com.yatochk.pillapp.model.db.ListTypeConverter
 import com.yatochk.pillapp.model.db.MedicationEatTypeConverter
 import com.yatochk.pillapp.model.db.MedicationTypeConverter
+import java.io.Serializable
 import java.util.*
 
 @Entity
@@ -27,4 +28,4 @@ data class MedicationSchedule(
     var startDate: Date,
     var receptionTimes: List<Long>,
     var type: MedicationType
-)
+) : Serializable

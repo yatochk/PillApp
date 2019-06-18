@@ -18,10 +18,16 @@ class NewCourseActivity : ToolActivity() {
 
     companion object {
         private const val MEDICATION_TYPE = "medicationType"
+        private const val MEDICATION = "medication"
 
         fun newIntent(context: Context, medicationType: MedicationType) =
             Intent(context, NewCourseActivity::class.java).apply {
                 putExtra(MEDICATION_TYPE, medicationType)
+            }
+
+        fun newIntent(context: Context, medicationSchedule: MedicationSchedule) =
+            Intent(context, NewCourseActivity::class.java).apply {
+                putExtra(MEDICATION, medicationSchedule)
             }
     }
 
@@ -31,8 +37,10 @@ class NewCourseActivity : ToolActivity() {
 
     private lateinit var dateRequester: RequestDateTime
 
+    private lateinit var title: String
+
     override fun getTitleText(): String =
-        getString(R.string.title_new_course)
+        title
 
     override fun onClickAccept() {
         viewModel.save()
@@ -42,8 +50,14 @@ class NewCourseActivity : ToolActivity() {
     override fun initActivity() {
         setContentView(R.layout.activity_new_course)
         (application as MedicationApplication).component.injectActivity(this)
-        val type = intent.getSerializableExtra(MEDICATION_TYPE) as MedicationType
-        viewModel.initType(type)
+        title = getString(R.string.title_new_course)
+        (intent.getSerializableExtra(MEDICATION_TYPE) as MedicationType?)?.also {
+            viewModel.initType(it)
+        }
+        (intent.getSerializableExtra(MEDICATION) as MedicationSchedule?)?.also {
+            viewModel.update(it)
+            title = getString(R.string.title_edit_course)
+        }
         viewModel.medicationSchedule.observe(this) {
             medicationSchedule = it
             populateView(it)

@@ -11,6 +11,7 @@ import com.yatochk.pillapp.utils.injectViewModel
 import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.adapter.MedicationAdapter
+import com.yatochk.pillapp.view.add_schedule.NewCourseActivity
 import com.yatochk.pillapp.view.viewmodel.MedicationViewModel
 import kotlinx.android.synthetic.main.fragment_medication.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -46,6 +47,9 @@ class MedicationFragment : Fragment() {
         recycler_medication.layoutManager = LinearLayoutManager(activity)
         viewModel.schedules.observe(this) {
             adapter.submitList(it)
+        }
+        viewModel.editItem.observe(this) {
+            startActivity(NewCourseActivity.newIntent(activity!!, it))
         }
     }
 }
