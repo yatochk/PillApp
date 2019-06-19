@@ -13,6 +13,7 @@ import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.adapter.SchedulesAdapter
 import com.yatochk.pillapp.view.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.joda.time.DateTime
 
 class HomeFragment : Fragment() {
     companion object {
@@ -35,6 +36,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initList() {
+        week_calendar.setSelectedDate(DateTime.now())
+        week_calendar.setOnDateClickListener {
+            if (it != null)
+                viewModel.updateDate(it.toDate())
+        }
         adapter = SchedulesAdapter()
         recycler_schedule.adapter = adapter
         recycler_schedule.layoutManager = LinearLayoutManager(activity)

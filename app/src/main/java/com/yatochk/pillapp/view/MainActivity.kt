@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yatochk.pillapp.R
@@ -35,25 +36,33 @@ class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val medicationFragment = MedicationFragment()
-    private val measuringFragment = MeasuringFragment()
+    //private val measuringFragment = MeasuringFragment()
 
+    private var oldFragment: Fragment = homeFragment
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.main_frame,
-                when (item.itemId) {
-                    R.id.navigation_home -> {
-                        homeFragment
-                    }
-                    R.id.navigation_medication -> {
-                        medicationFragment
-                    }
-                    R.id.navigation_measuring -> {
-                        measuringFragment
-                    }
-                    else -> throw IllegalArgumentException(WRONG_FRAGMENT)
-                }
-            ).commit()
+        val currentFragment = when (item.itemId) {
+            R.id.navigation_home -> {
+                homeFragment
+            }
+            R.id.navigation_medication -> {
+                medicationFragment
+            }
+            R.id.navigation_measuring -> {
+                MeasuringFragment() //TODO временное решение из-за проблем с itemDecorations
+            }
+            else -> throw IllegalArgumentException(WRONG_FRAGMENT)
+        }
+
+        val transaction = supportFragmentManager.beginTransaction()
+            .hide(oldFragment)
+            .addToBackStack(oldFragment.tag)
+        if (currentFragment is MeasuringFragment) {
+            transaction.add(R.id.main_frame, currentFragment, MeasuringFragment.TAG)
+        } else {
+            transaction.show(currentFragment)
+        }
+            .commit()
+        oldFragment = currentFragment
         true
     }
 
@@ -87,7 +96,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStartFragment() {
         supportFragmentManager.beginTransaction()
+            .add(R.id.main_frame, medicationFragment, MedicationFragment.TAG)
             .add(R.id.main_frame, homeFragment, HomeFragment.TAG)
+            .hide(medicationFragment)
             .commit()
     }
 
