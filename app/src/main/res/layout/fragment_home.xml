@@ -7,11 +7,11 @@
 
     <noman.weekcalendar.WeekCalendar
             android:id="@+id/week_calendar"
-            app:dayNameLength="threeLetters"
-            app:weekTextSize="26sp"
-            app:daysTextSize="26sp"
             android:layout_width="match_parent"
-            android:layout_height="70dp"/>
+            android:layout_height="65dp"
+            android:background="@color/colorPrimary"
+            app:numOfPages="150"
+            app:dayNameLength="threeLetters"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_schedule"
