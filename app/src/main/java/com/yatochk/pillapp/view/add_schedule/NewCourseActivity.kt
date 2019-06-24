@@ -11,6 +11,7 @@ import com.yatochk.pillapp.utils.*
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.RequestDateTime
 import com.yatochk.pillapp.view.ToolActivity
+import com.yatochk.pillapp.view.dialog.CountDialog
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
 
@@ -57,6 +58,7 @@ class NewCourseActivity : ToolActivity() {
         (intent.getSerializableExtra(MEDICATION) as MedicationSchedule?)?.also {
             viewModel.update(it)
             title = getString(R.string.title_edit_course)
+            medication_name.setText(it.name)
         }
         viewModel.medicationSchedule.observe(this) {
             medicationSchedule = it
@@ -87,6 +89,14 @@ class NewCourseActivity : ToolActivity() {
                 viewModel.update(medicationSchedule)
             }
             dateRequester.request()
+        }
+        edit_in_day.setOnClickListener {
+            CountDialog().apply {
+                onPickListener = {
+                    medicationSchedule.countInDay = it
+                    viewModel.update(medicationSchedule)
+                }
+            }.show(supportFragmentManager, CountDialog.TAG)
         }
         medication_name.addTextChangedListener(object : PillTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
