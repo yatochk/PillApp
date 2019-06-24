@@ -3,8 +3,8 @@ package com.yatochk.pillapp.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.yatochk.pillapp.model.db.EatTypeConverter
 import com.yatochk.pillapp.model.db.ListTypeConverter
-import com.yatochk.pillapp.model.db.MedicationEatTypeConverter
 import com.yatochk.pillapp.model.db.MedicationTypeConverter
 import java.io.Serializable
 import java.util.*
@@ -14,7 +14,7 @@ import java.util.*
     MedicationTypeConverter::class,
     ListTypeConverter::class,
     DateTypeConverter::class,
-    MedicationEatTypeConverter::class
+    EatTypeConverter::class
 )
 data class MedicationSchedule(
     @PrimaryKey(autoGenerate = true)

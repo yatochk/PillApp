@@ -12,6 +12,7 @@ import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.RequestDateTime
 import com.yatochk.pillapp.view.ToolActivity
 import com.yatochk.pillapp.view.dialog.CountDialog
+import com.yatochk.pillapp.view.dialog.DosageDialog
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
 
@@ -97,6 +98,15 @@ class NewCourseActivity : ToolActivity() {
                     viewModel.update(medicationSchedule)
                 }
             }.show(supportFragmentManager, CountDialog.TAG)
+        }
+        edit_dose.setOnClickListener {
+            DosageDialog.newInstance(medicationSchedule.dependencyOfEat)
+                .apply {
+                    onAcceptListener = {
+                        medicationSchedule.dependencyOfEat = it
+                        viewModel.update(medicationSchedule)
+                    }
+                }.show(supportFragmentManager, DosageDialog.TAG)
         }
         medication_name.addTextChangedListener(object : PillTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
