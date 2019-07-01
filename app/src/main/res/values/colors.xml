@@ -24,4 +24,6 @@
 
     <color name="activated_item">@color/colorPrimaryDark</color>
     <color name="not_activated_item">@color/colorPrimary</color>
+
+    <color name="time_bg_color">@color/colorPrimaryDark</color>
 </resources>

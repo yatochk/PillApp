@@ -3,6 +3,7 @@ package com.yatochk.pillapp.view.add_schedule
 import android.content.Context
 import android.content.Intent
 import android.text.Editable
+import androidx.recyclerview.widget.GridLayoutManager
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MedicationSchedule
@@ -11,10 +12,12 @@ import com.yatochk.pillapp.utils.*
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.RequestDateTime
 import com.yatochk.pillapp.view.ToolActivity
+import com.yatochk.pillapp.view.adapter.TimesPickerAdapter
 import com.yatochk.pillapp.view.dialog.CountDialog
 import com.yatochk.pillapp.view.dialog.DosageDialog
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
+import java.util.*
 
 class NewCourseActivity : ToolActivity() {
 
@@ -40,6 +43,8 @@ class NewCourseActivity : ToolActivity() {
     private lateinit var dateRequester: RequestDateTime
 
     private lateinit var title: String
+
+    private lateinit var timesAdapter: TimesPickerAdapter
 
     override fun getTitleText(): String =
         title
@@ -69,6 +74,9 @@ class NewCourseActivity : ToolActivity() {
             startActivity(MainActivity.newIntent(this))
             finish()
         }
+        timesAdapter = TimesPickerAdapter()
+        recycler_day_times.adapter = timesAdapter
+        recycler_day_times.layoutManager = GridLayoutManager(this, 4)
         initButtons()
         dateRequester = RequestDateTime(this)
     }
@@ -121,6 +129,12 @@ class NewCourseActivity : ToolActivity() {
     private fun populateView(medicationSchedule: MedicationSchedule) {
         populateIcon(medicationSchedule)
         populateTextValue(medicationSchedule)
+        populateTimes(medicationSchedule.receptionTimes)
+    }
+
+    private fun populateTimes(times: List<Long>) {
+        val dates = times.map { Date(it) }
+        timesAdapter.submitList(dates)
     }
 
     private fun populateTextValue(schedule: MedicationSchedule) {
