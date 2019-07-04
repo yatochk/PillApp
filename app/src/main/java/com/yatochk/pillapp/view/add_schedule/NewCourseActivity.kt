@@ -3,7 +3,9 @@ package com.yatochk.pillapp.view.add_schedule
 import android.content.Context
 import android.content.Intent
 import android.text.Editable
-import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MedicationSchedule
@@ -18,6 +20,7 @@ import com.yatochk.pillapp.view.dialog.DosageDialog
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class NewCourseActivity : ToolActivity() {
 
@@ -74,9 +77,25 @@ class NewCourseActivity : ToolActivity() {
             startActivity(MainActivity.newIntent(this))
             finish()
         }
-        timesAdapter = TimesPickerAdapter()
+        timesAdapter = TimesPickerAdapter { position ->
+            val newTimes = ArrayList<Long>().apply {
+                addAll(medicationSchedule.receptionTimes)
+            }
+            dateRequester.listener = {
+                newTimes[position] = it.time.time
+                medicationSchedule.receptionTimes = newTimes
+                viewModel.update(medicationSchedule)
+            }
+            dateRequester.setCurrent(Calendar.getInstance().apply {
+                time = Date(medicationSchedule.receptionTimes[position])
+            })
+            dateRequester.requestTime()
+        }
         recycler_day_times.adapter = timesAdapter
-        recycler_day_times.layoutManager = GridLayoutManager(this, 4)
+        recycler_day_times.layoutManager = FlexboxLayoutManager(this).apply {
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.SPACE_EVENLY
+        }
         initButtons()
         dateRequester = RequestDateTime(this)
     }
