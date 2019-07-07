@@ -21,13 +21,16 @@ import com.yatochk.pillapp.view.dialog.EatDialog
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class NewCourseActivity : ToolActivity() {
 
     companion object {
         private const val MEDICATION_TYPE = "medicationType"
         private const val MEDICATION = "medication"
+        private val DEFAULT_TIME = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 16)
+            set(Calendar.MINUTE, 0)
+        }.time.time
 
         fun newIntent(context: Context, medicationType: MedicationType) =
             Intent(context, NewCourseActivity::class.java).apply {
@@ -120,11 +123,15 @@ class NewCourseActivity : ToolActivity() {
             dateRequester.request()
         }
         edit_in_day.setOnClickListener {
-            CountDialog().apply {
-                onPickListener = {
-                    medicationSchedule.countInDay = it
-                    viewModel.update(medicationSchedule)
+            CountDialog.newInstance(medicationSchedule.countInDay) {
+                medicationSchedule.countInDay = it
+                val newTimes = ArrayList<Long>().apply {
+                    while (size < it) {
+                        add(DEFAULT_TIME)
+                    }
                 }
+                medicationSchedule.receptionTimes = newTimes
+                viewModel.update(medicationSchedule)
             }.show(supportFragmentManager, CountDialog.TAG)
         }
         edit_dose.setOnClickListener {
