@@ -56,4 +56,7 @@
     <string name="delete_course">Delete</string>
     <string name="pick_times_in_day">Pick times in day</string>
     <string name="ok">OK</string>
+    <string name="dependency_of_eat">Dependency of eat</string>
+    <string name="time_for_eat">Minute</string>
+    <string name="hint_eat_time">15</string>
 </resources>

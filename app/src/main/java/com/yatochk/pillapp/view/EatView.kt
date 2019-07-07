@@ -19,13 +19,13 @@ class EatView(context: Context, attrs: AttributeSet) :
 
     fun setEat(eat: MedicationEat) {
         schedule_after_eat.setImageResource(
-            if (eat.type == EatType.AFTER)
+            if (eat.type == EatType.AFTER || eat.type == EatType.IN_TIME)
                 R.drawable.indicator_on
             else
                 R.drawable.indicator_off
         )
         schedule_before_eat.setImageResource(
-            if (eat.type == EatType.BEFORE)
+            if (eat.type == EatType.BEFORE || eat.type == EatType.IN_TIME)
                 R.drawable.indicator_on
             else
                 R.drawable.indicator_off
