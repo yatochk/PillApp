@@ -127,13 +127,10 @@ class NewCourseActivity : ToolActivity() {
             }.show(supportFragmentManager, CountDialog.TAG)
         }
         edit_dose.setOnClickListener {
-            DosageDialog.newInstance(medicationSchedule.dependencyOfEat)
-                .apply {
-                    onAcceptListener = {
-                        medicationSchedule.dependencyOfEat = it
-                        viewModel.update(medicationSchedule)
-                    }
-                }.show(supportFragmentManager, DosageDialog.TAG)
+            DosageDialog {
+                medicationSchedule.dosage = it ?: 1.0
+                viewModel.update(medicationSchedule)
+            }.show(supportFragmentManager, DosageDialog.TAG)
         }
         medication_name.addTextChangedListener(object : PillTextWatcher() {
             override fun afterTextChanged(s: Editable?) {

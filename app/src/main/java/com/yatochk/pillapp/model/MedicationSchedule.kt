@@ -20,7 +20,7 @@ data class MedicationSchedule(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
     var name: String,
-    var dosage: Int,
+    var dosage: Double,
     var countInDay: Int,
     var periods: Long,
     var dependencyOfEat: MedicationEat,

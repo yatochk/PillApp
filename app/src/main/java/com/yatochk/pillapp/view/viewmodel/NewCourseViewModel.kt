@@ -25,7 +25,7 @@ class NewCourseViewModel @Inject constructor(
         mutableSchedule.value = MedicationSchedule(
             id = null,
             name = "",
-            dosage = 1,
+            dosage = 1.0,
             countInDay = 3,
             periods = 0,
             dependencyOfEat = MedicationEat(15, EatType.BEFORE),

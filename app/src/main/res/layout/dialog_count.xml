@@ -12,8 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textSize="22sp"
-            android:textColor="@color/main_text_color"
+            style="@style/TitleDialog"
             android:text="@string/pick_times_in_day"/>
 
     <NumberPicker

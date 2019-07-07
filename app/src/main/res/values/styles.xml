@@ -25,6 +25,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="TitleDialog" parent="TitleText">
+        <item name="android:textSize">22sp</item>
+    </style>
+
     <style name="MedicationCard">
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginEnd">8dp</item>
