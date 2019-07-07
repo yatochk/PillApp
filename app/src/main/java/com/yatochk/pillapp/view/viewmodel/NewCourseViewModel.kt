@@ -3,6 +3,7 @@ package com.yatochk.pillapp.view.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.yatochk.pillapp.model.EatType
 import com.yatochk.pillapp.model.MedicationEat
 import com.yatochk.pillapp.model.MedicationSchedule
 import com.yatochk.pillapp.model.MedicationType
@@ -24,10 +25,10 @@ class NewCourseViewModel @Inject constructor(
         mutableSchedule.value = MedicationSchedule(
             id = null,
             name = "",
-            dosage = 1,
+            dosage = 1.0,
             countInDay = 3,
             periods = 0,
-            dependencyOfEat = MedicationEat.AFTER,
+            dependencyOfEat = MedicationEat(15, EatType.BEFORE),
             endDate = Date(),
             startDate = Date(),
             receptionTimes = getDefaultTimes(),

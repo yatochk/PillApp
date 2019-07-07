@@ -31,26 +31,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"/>
 
-        <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                app:srcCompat="@drawable/indicator"
-                android:id="@+id/schedule_before_eat"
-                tools:ignore="ContentDescription"/>
-        <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/ic_dish"
-                android:id="@+id/imageView"
-                tools:ignore="ContentDescription"/>
-        <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                app:srcCompat="@drawable/indicator"
-                android:id="@+id/schedule_after_eat"
-                android:layout_marginStart="8dp"
-                tools:ignore="ContentDescription"/>
+        <com.yatochk.pillapp.view.EatView
+                android:id="@+id/medication_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <LinearLayout android:id="@+id/container_buttons"

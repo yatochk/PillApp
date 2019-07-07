@@ -159,6 +159,9 @@
                           android:layout_height="wrap_content">
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_day_times"
+                        android:paddingTop="8dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
             </LinearLayout>

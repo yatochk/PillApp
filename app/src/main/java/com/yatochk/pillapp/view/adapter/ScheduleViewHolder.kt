@@ -14,6 +14,7 @@ class ScheduleViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         with(itemView) {
             schedule_name.text = medicationSchedule.name
             schedule_icon.setImageResource(medicationSchedule.type.getIcon())
+            schedule_eat.setEat(medicationSchedule.dependencyOfEat)
         }
     }
 }

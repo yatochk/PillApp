@@ -17,6 +17,7 @@ class MedicationViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         with(itemView) {
             schedule_name.text = medicationSchedule.name
             schedule_icon.setImageResource(medicationSchedule.type.getIcon())
+            medication_eat.setEat(medicationSchedule.dependencyOfEat)
             setOnClickListener {
                 container_buttons.visibility =
                     if (container_buttons.visibility == View.GONE)

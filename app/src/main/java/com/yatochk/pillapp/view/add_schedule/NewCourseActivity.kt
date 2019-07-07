@@ -3,6 +3,9 @@ package com.yatochk.pillapp.view.add_schedule
 import android.content.Context
 import android.content.Intent
 import android.text.Editable
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MedicationSchedule
@@ -11,14 +14,23 @@ import com.yatochk.pillapp.utils.*
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.RequestDateTime
 import com.yatochk.pillapp.view.ToolActivity
+import com.yatochk.pillapp.view.adapter.TimesPickerAdapter
+import com.yatochk.pillapp.view.dialog.CountDialog
+import com.yatochk.pillapp.view.dialog.DosageDialog
+import com.yatochk.pillapp.view.dialog.EatDialog
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
+import java.util.*
 
 class NewCourseActivity : ToolActivity() {
 
     companion object {
         private const val MEDICATION_TYPE = "medicationType"
         private const val MEDICATION = "medication"
+        private val DEFAULT_TIME = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 16)
+            set(Calendar.MINUTE, 0)
+        }.time.time
 
         fun newIntent(context: Context, medicationType: MedicationType) =
             Intent(context, NewCourseActivity::class.java).apply {
@@ -39,6 +51,8 @@ class NewCourseActivity : ToolActivity() {
 
     private lateinit var title: String
 
+    private lateinit var timesAdapter: TimesPickerAdapter
+
     override fun getTitleText(): String =
         title
 
@@ -57,6 +71,7 @@ class NewCourseActivity : ToolActivity() {
         (intent.getSerializableExtra(MEDICATION) as MedicationSchedule?)?.also {
             viewModel.update(it)
             title = getString(R.string.title_edit_course)
+            medication_name.setText(it.name)
         }
         viewModel.medicationSchedule.observe(this) {
             medicationSchedule = it
@@ -65,6 +80,25 @@ class NewCourseActivity : ToolActivity() {
         viewModel.cancelView.observe(this) {
             startActivity(MainActivity.newIntent(this))
             finish()
+        }
+        timesAdapter = TimesPickerAdapter { position ->
+            val newTimes = ArrayList<Long>().apply {
+                addAll(medicationSchedule.receptionTimes)
+            }
+            dateRequester.listener = {
+                newTimes[position] = it.time.time
+                medicationSchedule.receptionTimes = newTimes
+                viewModel.update(medicationSchedule)
+            }
+            dateRequester.setCurrent(Calendar.getInstance().apply {
+                time = Date(medicationSchedule.receptionTimes[position])
+            })
+            dateRequester.requestTime()
+        }
+        recycler_day_times.adapter = timesAdapter
+        recycler_day_times.layoutManager = FlexboxLayoutManager(this).apply {
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.SPACE_EVENLY
         }
         initButtons()
         dateRequester = RequestDateTime(this)
@@ -88,6 +122,30 @@ class NewCourseActivity : ToolActivity() {
             }
             dateRequester.request()
         }
+        edit_in_day.setOnClickListener {
+            CountDialog.newInstance(medicationSchedule.countInDay) {
+                medicationSchedule.countInDay = it
+                val newTimes = ArrayList<Long>().apply {
+                    while (size < it) {
+                        add(DEFAULT_TIME)
+                    }
+                }
+                medicationSchedule.receptionTimes = newTimes
+                viewModel.update(medicationSchedule)
+            }.show(supportFragmentManager, CountDialog.TAG)
+        }
+        edit_dose.setOnClickListener {
+            DosageDialog {
+                medicationSchedule.dosage = it ?: 1.0
+                viewModel.update(medicationSchedule)
+            }.show(supportFragmentManager, DosageDialog.TAG)
+        }
+        edit_eat.setOnClickListener {
+            EatDialog.newInstance(medicationSchedule.dependencyOfEat) {
+                medicationSchedule.dependencyOfEat = it
+                viewModel.update(medicationSchedule)
+            }.show(supportFragmentManager, EatDialog.TAG)
+        }
         medication_name.addTextChangedListener(object : PillTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 if (!s.isNullOrEmpty()) {
@@ -101,6 +159,12 @@ class NewCourseActivity : ToolActivity() {
     private fun populateView(medicationSchedule: MedicationSchedule) {
         populateIcon(medicationSchedule)
         populateTextValue(medicationSchedule)
+        populateTimes(medicationSchedule.receptionTimes)
+    }
+
+    private fun populateTimes(times: List<Long>) {
+        val dates = times.map { Date(it) }
+        timesAdapter.submitList(dates)
     }
 
     private fun populateTextValue(schedule: MedicationSchedule) {

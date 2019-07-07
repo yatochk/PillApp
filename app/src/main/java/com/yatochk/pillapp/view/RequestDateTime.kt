@@ -26,6 +26,19 @@ class RequestDateTime(context: Context) {
             requestTime()
         }
 
+    fun setCurrent(calendar: Calendar) {
+        timePicker.updateTime(
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE)
+        )
+        datePicker.updateDate(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        currentDate = calendar
+    }
+
     init {
         datePicker = DatePickerDialog(
             context,
@@ -47,7 +60,7 @@ class RequestDateTime(context: Context) {
         datePicker.show()
     }
 
-    private fun requestTime() {
+    fun requestTime() {
         timePicker.show()
     }
 }
