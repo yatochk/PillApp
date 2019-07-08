@@ -27,6 +27,7 @@
         <activity android:name=".view.add_schedule.NewCourseActivity"
                   android:windowSoftInputMode="adjustNothing"/>
         <service android:name=".model.NotifyService"/>
+        <receiver android:name=".model.NotifyReceiver"/>
     </application>
 
 </manifest>
