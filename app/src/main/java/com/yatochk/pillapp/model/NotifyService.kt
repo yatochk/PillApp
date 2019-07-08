@@ -21,7 +21,9 @@ class NotifyService : LifecycleService() {
 
     companion object {
         private const val REQUEST_ID = 1345
-        const val MEDICATION = "medication"
+        const val MEDICATION_NAME = "medication_name"
+        const val MEDICATION_ID = "medication_id"
+        const val MEDICATION_ACTION = "pill_action"
     }
 
     override fun onCreate() {
@@ -48,10 +50,9 @@ class NotifyService : LifecycleService() {
 
     private fun getMedicationIntent(medicationSchedule: MedicationSchedule): PendingIntent {
         val intent = Intent(this, NotifyReceiver::class.java).apply {
-            action = "pill_remind"
-            putExtra("name", medicationSchedule.name)
-            putExtra("id", medicationSchedule.id)
-            putExtra(MEDICATION, medicationSchedule)
+            action = MEDICATION_ACTION
+            putExtra(MEDICATION_NAME, medicationSchedule.name)
+            putExtra(MEDICATION_ID, medicationSchedule.id)
         }
         return PendingIntent.getBroadcast(this, REQUEST_ID, intent, 0)
     }
