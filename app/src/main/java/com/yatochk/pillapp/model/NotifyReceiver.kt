@@ -25,7 +25,8 @@ class NotifyReceiver : BroadcastReceiver() {
             notificationManager = p0.getSystemService(LifecycleService.NOTIFICATION_SERVICE) as NotificationManager
             createNotifyChanel()
             val id = p1.getIntExtra(NotifyService.MEDICATION_ID, 1)
-            sendNotify(p0, id, it, p0.getString(R.string.notify_msg))
+            val type = MedicationType.valueOf(p1.getStringExtra(NotifyService.MEDICATION_TYPE))
+            sendNotify(p0, id, it, p0.getString(R.string.notify_msg), type)
         }
     }
 
@@ -40,9 +41,9 @@ class NotifyReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun sendNotify(context: Context, id: Int, name: String, text: String) {
+    private fun sendNotify(context: Context, id: Int, name: String, text: String, type: MedicationType) {
         val notificationBuilder = NotificationCompat.Builder(context, "default")
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(type.getIcon())
             .setContentTitle(name)
             .setContentText(text)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

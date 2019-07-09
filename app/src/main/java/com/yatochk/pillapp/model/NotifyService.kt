@@ -23,6 +23,7 @@ class NotifyService : LifecycleService() {
         private const val REQUEST_ID = 1345
         const val MEDICATION_NAME = "medication_name"
         const val MEDICATION_ID = "medication_id"
+        const val MEDICATION_TYPE = "medication_type"
         const val MEDICATION_ACTION = "pill_action"
     }
 
@@ -53,6 +54,7 @@ class NotifyService : LifecycleService() {
             action = MEDICATION_ACTION
             putExtra(MEDICATION_NAME, medicationSchedule.name)
             putExtra(MEDICATION_ID, medicationSchedule.id)
+            putExtra(MEDICATION_TYPE, medicationSchedule.type.name)
         }
         return PendingIntent.getBroadcast(this, REQUEST_ID, intent, 0)
     }
