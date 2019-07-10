@@ -61,4 +61,7 @@
     <string name="hint_eat_time">15</string>
 
     <string name="notify_msg">Pill ready</string>
+
+    <string name="daily">Every day</string>
+    <string name="weekly">Every week</string>
 </resources>

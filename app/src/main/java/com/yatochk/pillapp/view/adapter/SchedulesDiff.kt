@@ -1,12 +1,11 @@
 package com.yatochk.pillapp.view.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.yatochk.pillapp.model.MedicationSchedule
 
-class SchedulesDiff : DiffUtil.ItemCallback<MedicationSchedule>() {
-    override fun areItemsTheSame(oldItem: MedicationSchedule, newItem: MedicationSchedule): Boolean =
+class SchedulesDiff : DiffUtil.ItemCallback<ScheduleItem>() {
+    override fun areItemsTheSame(oldItem: ScheduleItem, newItem: ScheduleItem): Boolean =
         oldItem == newItem
 
-    override fun areContentsTheSame(oldItem: MedicationSchedule, newItem: MedicationSchedule): Boolean =
+    override fun areContentsTheSame(oldItem: ScheduleItem, newItem: ScheduleItem): Boolean =
         oldItem == newItem
 }

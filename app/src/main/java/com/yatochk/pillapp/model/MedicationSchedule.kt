@@ -22,7 +22,7 @@ data class MedicationSchedule(
     var name: String,
     var dosage: Double,
     var countInDay: Int,
-    var periods: Long,
+    var period: Long,
     var dependencyOfEat: MedicationEat,
     var endDate: Date,
     var startDate: Date,
