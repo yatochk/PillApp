@@ -52,7 +52,7 @@ class NotifyService : LifecycleService() {
                         alarmManager.setInexactRepeating(
                             AlarmManager.RTC,
                             alarmTime.timeInMillis,
-                            medication.periods,
+                            medication.period,
                             getMedicationIntent(medication)
                         )
                     }
