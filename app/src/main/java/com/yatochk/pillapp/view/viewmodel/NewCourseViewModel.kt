@@ -1,5 +1,6 @@
 package com.yatochk.pillapp.view.viewmodel
 
+import android.app.AlarmManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,7 +28,7 @@ class NewCourseViewModel @Inject constructor(
             name = "",
             dosage = 1.0,
             countInDay = 3,
-            periods = 0,
+            periods = AlarmManager.INTERVAL_DAY,
             dependencyOfEat = MedicationEat(15, EatType.BEFORE),
             endDate = Date(),
             startDate = Date(),

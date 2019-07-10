@@ -59,4 +59,6 @@
     <string name="dependency_of_eat">Dependency of eat</string>
     <string name="time_for_eat">Minute</string>
     <string name="hint_eat_time">15</string>
+
+    <string name="notify_msg">Pill ready</string>
 </resources>
