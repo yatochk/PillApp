@@ -7,6 +7,7 @@ import android.content.Intent
 import androidx.lifecycle.LifecycleService
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.db.medication.MedicationScheduleDao
+import com.yatochk.pillapp.utils.isActive
 import com.yatochk.pillapp.utils.observe
 import java.util.*
 import javax.inject.Inject
@@ -37,15 +38,25 @@ class NotifyService : LifecycleService() {
     }
 
     private fun initSchedule(medications: List<MedicationSchedule>) {
-        val currentDate = Date()
-        medications.filter { currentDate.before(it.endDate) && currentDate.after(it.startDate) }
-            .forEach {
-                alarmManager.setInexactRepeating(
-                    AlarmManager.RTC,
-                    Date().time + 1000 * 10,
-                    it.periods,
-                    getMedicationIntent(it)
-                )
+        medications.filter { Date().isActive(it.startDate, it.endDate) }
+            .forEach { medication ->
+                medication.receptionTimes.forEach { time ->
+                    val alarmTime = Calendar.getInstance().apply {
+                        val medicationTime = Calendar.getInstance()
+                        medicationTime.time = Date(time)
+
+                        set(Calendar.HOUR_OF_DAY, medicationTime.get(Calendar.HOUR_OF_DAY))
+                        set(Calendar.MINUTE, medicationTime.get(Calendar.MINUTE))
+                    }
+                    if (alarmTime.timeInMillis > Date().time) {
+                        alarmManager.setInexactRepeating(
+                            AlarmManager.RTC,
+                            alarmTime.timeInMillis,
+                            medication.periods,
+                            getMedicationIntent(medication)
+                        )
+                    }
+                }
             }
     }
 
