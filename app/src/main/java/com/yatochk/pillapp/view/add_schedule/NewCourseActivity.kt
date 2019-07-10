@@ -18,6 +18,7 @@ import com.yatochk.pillapp.view.adapter.TimesPickerAdapter
 import com.yatochk.pillapp.view.dialog.CountDialog
 import com.yatochk.pillapp.view.dialog.DosageDialog
 import com.yatochk.pillapp.view.dialog.EatDialog
+import com.yatochk.pillapp.view.dialog.PeriodDialog
 import com.yatochk.pillapp.view.viewmodel.NewCourseViewModel
 import kotlinx.android.synthetic.main.activity_new_course.*
 import java.util.*
@@ -28,7 +29,7 @@ class NewCourseActivity : ToolActivity() {
         private const val MEDICATION_TYPE = "medicationType"
         private const val MEDICATION = "medication"
         private val DEFAULT_TIME = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 16)
+            set(Calendar.HOUR_OF_DAY, 12)
             set(Calendar.MINUTE, 0)
         }.time.time
 
@@ -146,6 +147,12 @@ class NewCourseActivity : ToolActivity() {
                 viewModel.update(medicationSchedule)
             }.show(supportFragmentManager, EatDialog.TAG)
         }
+        edit_period.setOnClickListener {
+            PeriodDialog.newInstance(medicationSchedule.period) {
+                medicationSchedule.period = it
+                viewModel.update(medicationSchedule)
+            }.show(supportFragmentManager, PeriodDialog.TAG)
+        }
         medication_name.addTextChangedListener(object : PillTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 if (!s.isNullOrEmpty()) {
@@ -181,6 +188,17 @@ class NewCourseActivity : ToolActivity() {
         medication_value_in_day.text = getString(
             R.string.count_in_day,
             schedule.countInDay.toString()
+        )
+        medication_value_period.text = getString(
+            when (medicationSchedule.period) {
+                Period.DAY -> {
+                    R.string.daily
+                }
+                Period.WEEK -> {
+                    R.string.weekly
+                }
+                else -> throw IllegalArgumentException("Wrong period")
+            }
         )
     }
 

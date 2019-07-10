@@ -4,16 +4,16 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 
 class PeriodDialog(
-    private var onPickListener: (Int) -> Unit
+    private var onPickListener: (Long) -> Unit
 ) : DialogFragment() {
 
     companion object {
         const val TAG = "dialog_period"
         private const val PERIOD = "count"
 
-        fun newInstance(period: Int, onPickListener: (Int) -> Unit): PeriodDialog {
+        fun newInstance(period: Long, onPickListener: (Long) -> Unit): PeriodDialog {
             return PeriodDialog(onPickListener).apply {
-                arguments = Bundle().apply { putInt(PERIOD, period) }
+                arguments = Bundle().apply { putLong(PERIOD, period) }
             }
         }
     }
