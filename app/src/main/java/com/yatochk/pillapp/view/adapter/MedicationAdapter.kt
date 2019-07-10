@@ -6,7 +6,7 @@ import com.yatochk.pillapp.model.MedicationSchedule
 
 class MedicationAdapter(
     private val listener: (MedicationViewHolder.ClickType, MedicationSchedule) -> Unit
-) : ListAdapter<MedicationSchedule, MedicationViewHolder>(SchedulesDiff()) {
+) : ListAdapter<MedicationSchedule, MedicationViewHolder>(MedicationsDiff()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicationViewHolder =
         MedicationViewHolder(parent)
 
