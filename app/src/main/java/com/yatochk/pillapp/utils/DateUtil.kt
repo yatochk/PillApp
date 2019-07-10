@@ -31,3 +31,6 @@ fun Date.toSimpleDate(context: Context): String =
 
 fun Date.isCurrentDay(): Boolean =
     (this.time + DELTA_FIRST_DAY) / MILLS_PER_DAY == (Date().time + DELTA_FIRST_DAY) / MILLS_PER_DAY
+
+fun Date.isActive(startDate: Date, endDate: Date): Boolean =
+    this.before(endDate) && this.after(startDate)
