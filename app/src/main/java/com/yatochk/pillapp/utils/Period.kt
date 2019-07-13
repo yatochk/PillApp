@@ -4,5 +4,5 @@ import android.app.AlarmManager
 
 object Period {
     const val DAY = AlarmManager.INTERVAL_DAY
-    const val WEEK = AlarmManager.INTERVAL_DAY * 7
+    const val DOUBLE_DAY = AlarmManager.INTERVAL_DAY * 2
 }

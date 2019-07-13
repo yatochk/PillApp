@@ -175,6 +175,7 @@ class NewCourseActivity : ToolActivity() {
     }
 
     private fun populateTextValue(schedule: MedicationSchedule) {
+        medication_value_dose.text = getString(R.string.dosage, medicationSchedule.dosage.toString())
         medication_value_start.text = getString(
             R.string.text_start_in,
             schedule.startDate.toTime(this),
@@ -194,7 +195,7 @@ class NewCourseActivity : ToolActivity() {
                 Period.DAY -> {
                     R.string.daily
                 }
-                Period.WEEK -> {
+                Period.DOUBLE_DAY -> {
                     R.string.weekly
                 }
                 else -> throw IllegalArgumentException("Wrong period")

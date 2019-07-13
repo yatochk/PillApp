@@ -27,7 +27,6 @@ class PressureAddViewModel @Inject constructor(
     ) {
         if (topPressure.toIntOrNull() == null
             || bottomPressure.toIntOrNull() == null
-            || pulse.toIntOrNull() == null
         ) {
             mutableMessage.value = MessageType.NOT_FILLED
         } else {
@@ -36,7 +35,7 @@ class PressureAddViewModel @Inject constructor(
                 date,
                 topPressure.toInt(),
                 bottomPressure.toInt(),
-                pulse.toInt()
+                pulse.toIntOrNull() ?: 0
             )
             mutableCancelView.value = true
         }

@@ -2,6 +2,7 @@ package com.yatochk.pillapp.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.model.Pressure
@@ -17,6 +18,8 @@ class PressureViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             pressure_top.text = pressure.top.toString()
             pressure_bottom.text = pressure.bottom.toString()
             pressure_pulse.text = pressure.pulse.toString()
+            pressure_pulse.isVisible = pressure.pulse != 0
+            image_pulse.isVisible = pressure.pulse != 0
         }
     }
 }
