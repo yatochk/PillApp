@@ -2,7 +2,6 @@ package com.yatochk.pillapp.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.toTime
@@ -18,14 +17,4 @@ class TimeViewHolder(container: ViewGroup) : RecyclerView.ViewHolder(
             setOnClickListener { clickListener() }
         }
     }
-}
-
-class TimeDiff : DiffUtil.ItemCallback<Date>() {
-
-    override fun areItemsTheSame(oldItem: Date, newItem: Date): Boolean =
-        oldItem == newItem
-
-    override fun areContentsTheSame(oldItem: Date, newItem: Date): Boolean =
-        oldItem == newItem
-
 }
