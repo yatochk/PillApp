@@ -48,7 +48,7 @@ class NotifyService : LifecycleService() {
                         set(Calendar.HOUR_OF_DAY, medicationTime.get(Calendar.HOUR_OF_DAY))
                         set(Calendar.MINUTE, medicationTime.get(Calendar.MINUTE))
                     }
-                    if (alarmTime.timeInMillis > Date().time) {
+                    if (alarmTime.timeInMillis >= Date().time) {
                         alarmManager.setInexactRepeating(
                             AlarmManager.RTC,
                             alarmTime.timeInMillis,

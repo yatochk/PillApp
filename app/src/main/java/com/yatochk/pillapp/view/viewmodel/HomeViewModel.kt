@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.snakydesign.livedataextensions.combineLatest
 import com.snakydesign.livedataextensions.map
 import com.yatochk.pillapp.model.db.medication.MedicationScheduleRepository
+import com.yatochk.pillapp.utils.isActiveDay
 import com.yatochk.pillapp.view.adapter.ScheduleItem
 import java.util.*
 import javax.inject.Inject
@@ -20,7 +21,7 @@ class HomeViewModel @Inject constructor(
 
     var schedules: LiveData<List<ScheduleItem>> =
         combineLatest(selectedDate, medicationScheduleRepository.getRecords()) { date, list ->
-            list.filter { date.after(it.startDate) && date.before(it.endDate) }
+            list.filter { date.isActiveDay(it.startDate, it.endDate) }
         }.map { list ->
             val itemsList = ArrayList<ScheduleItem>()
             list.forEach { schedule ->
