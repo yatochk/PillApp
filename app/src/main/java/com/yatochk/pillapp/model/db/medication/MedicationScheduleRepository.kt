@@ -3,6 +3,7 @@ package com.yatochk.pillapp.model.db.medication
 import com.yatochk.pillapp.model.MedicationSchedule
 import com.yatochk.pillapp.model.db.PillDatabase
 import javax.inject.Inject
+import kotlin.concurrent.thread
 
 class MedicationScheduleRepository @Inject constructor(
     pillDatabase: PillDatabase
@@ -10,7 +11,22 @@ class MedicationScheduleRepository @Inject constructor(
     private val dao = pillDatabase.medicationScheduleDao
 
     fun getRecords() = dao.getMedications()
-    fun save(medicationSchedule: MedicationSchedule) = dao.addSchedule(medicationSchedule)
-    fun update(medicationSchedule: MedicationSchedule) = dao.updateSchedule(medicationSchedule)
-    fun delete(medicationSchedule: MedicationSchedule) = dao.deleteSchedule(medicationSchedule)
+
+    fun save(medicationSchedule: MedicationSchedule) {
+        thread {
+            dao.addSchedule(medicationSchedule)
+        }
+    }
+
+    fun update(medicationSchedule: MedicationSchedule) {
+        thread {
+            dao.updateSchedule(medicationSchedule)
+        }
+    }
+
+    fun delete(medicationSchedule: MedicationSchedule) {
+        thread {
+            dao.deleteSchedule(medicationSchedule)
+        }
+    }
 }
