@@ -12,7 +12,7 @@ import java.util.*
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    medicationScheduleRepository: MedicationScheduleRepository
+    private val medicationScheduleRepository: MedicationScheduleRepository
 ) : ViewModel() {
 
     private var selectedDate = MutableLiveData<Date>().apply {
@@ -28,14 +28,21 @@ class HomeViewModel @Inject constructor(
                 schedule.receptionTimes.forEach {
                     itemsList.add(
                         ScheduleItem(
-                            Date(it),
-                            schedule
+                            Date(it.time),
+                            schedule,
+                            it.checked
                         )
                     )
                 }
             }
             return@map itemsList.toList()
         }
+
+    fun changeChecked(scheduleItem: ScheduleItem, isChecked: Boolean) {
+        medicationScheduleRepository.update(scheduleItem.medication.apply {
+            receptionTimes.find { it.time == scheduleItem.displayTime.time }!!.checked = isChecked
+        })
+    }
 
     fun updateDate(newDate: Date) {
         selectedDate.value = newDate

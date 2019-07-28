@@ -3,6 +3,7 @@ package com.yatochk.pillapp.model.db.pressure
 import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.db.PillDatabase
 import javax.inject.Inject
+import kotlin.concurrent.thread
 
 class PressureRepository @Inject constructor(
     pillDatabase: PillDatabase
@@ -10,7 +11,16 @@ class PressureRepository @Inject constructor(
     private val dao = pillDatabase.pressureDao
 
     fun getRecords() = dao.getPressures()
-    fun save(pressure: Pressure) = dao.addPressure(pressure)
-    fun update(pressure: Pressure) = dao.updatePressure(pressure)
-    fun delete(pressure: Pressure) = dao.deletePressure(pressure)
+
+    fun save(pressure: Pressure) {
+        thread { dao.addPressure(pressure) }
+    }
+
+    fun update(pressure: Pressure) {
+        thread { dao.updatePressure(pressure) }
+    }
+
+    fun delete(pressure: Pressure) {
+        thread { dao.deletePressure(pressure) }
+    }
 }

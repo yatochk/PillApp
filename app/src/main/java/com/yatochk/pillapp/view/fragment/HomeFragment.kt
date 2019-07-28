@@ -41,7 +41,9 @@ class HomeFragment : Fragment() {
             if (it != null)
                 viewModel.updateDate(it.toDate())
         }
-        adapter = SchedulesAdapter()
+        adapter = SchedulesAdapter { item, isChecked ->
+            viewModel.changeChecked(item, isChecked)
+        }
         recycler_schedule.adapter = adapter
         recycler_schedule.layoutManager = LinearLayoutManager(activity)
         viewModel.schedules.observe(this) {
