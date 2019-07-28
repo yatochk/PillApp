@@ -10,6 +10,7 @@ import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MedicationSchedule
 import com.yatochk.pillapp.model.MedicationType
+import com.yatochk.pillapp.model.TimeReception
 import com.yatochk.pillapp.utils.*
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.RequestDateTime
@@ -83,16 +84,16 @@ class NewCourseActivity : ToolActivity() {
             finish()
         }
         timesAdapter = TimesPickerAdapter { position ->
-            val newTimes = ArrayList<Long>().apply {
+            val newTimes = ArrayList<TimeReception>().apply {
                 addAll(medicationSchedule.receptionTimes)
             }
             dateRequester.listener = {
-                newTimes[position] = it.time.time
+                newTimes[position].time = it.time.time
                 medicationSchedule.receptionTimes = newTimes
                 viewModel.update(medicationSchedule)
             }
             dateRequester.setCurrent(Calendar.getInstance().apply {
-                time = Date(medicationSchedule.receptionTimes[position])
+                time = Date(medicationSchedule.receptionTimes[position].time)
             })
             dateRequester.requestTime()
         }
@@ -124,14 +125,14 @@ class NewCourseActivity : ToolActivity() {
             dateRequester.request()
         }
         edit_in_day.setOnClickListener {
-            CountDialog.newInstance(medicationSchedule.countInDay) {
-                medicationSchedule.countInDay = it
+            CountDialog.newInstance(medicationSchedule.countInDay) { count ->
+                medicationSchedule.countInDay = count
                 val newTimes = ArrayList<Long>().apply {
-                    while (size < it) {
+                    while (size < count) {
                         add(DEFAULT_TIME)
                     }
                 }
-                medicationSchedule.receptionTimes = newTimes
+                medicationSchedule.receptionTimes = newTimes.map { TimeReception(it, false) }
                 viewModel.update(medicationSchedule)
             }.show(supportFragmentManager, CountDialog.TAG)
         }
@@ -166,7 +167,7 @@ class NewCourseActivity : ToolActivity() {
     private fun populateView(medicationSchedule: MedicationSchedule) {
         populateIcon(medicationSchedule)
         populateTextValue(medicationSchedule)
-        populateTimes(medicationSchedule.receptionTimes)
+        populateTimes(medicationSchedule.receptionTimes.map { it.time })
     }
 
     private fun populateTimes(times: List<Long>) {

@@ -25,9 +25,7 @@ class AppModule(private val app: Application) {
             context,
             PillDatabase::class.java,
             PillDatabase.DATABASE_NAME
-        )
-            .fallbackToDestructiveMigration()
-            .allowMainThreadQueries()
+        ).fallbackToDestructiveMigration()
             .build()
 
     @Singleton

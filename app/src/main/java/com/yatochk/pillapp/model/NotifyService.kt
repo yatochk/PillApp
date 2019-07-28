@@ -40,10 +40,10 @@ class NotifyService : LifecycleService() {
     private fun initSchedule(medications: List<MedicationSchedule>) {
         medications.filter { Date().isActive(it.startDate, it.endDate) }
             .forEach { medication ->
-                medication.receptionTimes.forEach { time ->
+                medication.receptionTimes.forEach { timeReception ->
                     val alarmTime = Calendar.getInstance().apply {
                         val medicationTime = Calendar.getInstance()
-                        medicationTime.time = Date(time)
+                        medicationTime.time = Date(timeReception.time)
 
                         set(Calendar.HOUR_OF_DAY, medicationTime.get(Calendar.HOUR_OF_DAY))
                         set(Calendar.MINUTE, medicationTime.get(Calendar.MINUTE))
@@ -63,8 +63,8 @@ class NotifyService : LifecycleService() {
     private fun getMedicationIntent(medicationSchedule: MedicationSchedule): PendingIntent {
         val intent = Intent(this, NotifyReceiver::class.java).apply {
             action = MEDICATION_ACTION
-            putExtra(MEDICATION_NAME, medicationSchedule.name)
             putExtra(MEDICATION_ID, medicationSchedule.id)
+            putExtra(MEDICATION_NAME, medicationSchedule.name)
             putExtra(MEDICATION_TYPE, medicationSchedule.type.name)
         }
         return PendingIntent.getBroadcast(this, REQUEST_ID, intent, 0)
