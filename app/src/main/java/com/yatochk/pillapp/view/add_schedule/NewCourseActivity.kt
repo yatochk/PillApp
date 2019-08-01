@@ -132,7 +132,7 @@ class NewCourseActivity : ToolActivity() {
                         add(DEFAULT_TIME)
                     }
                 }
-                medicationSchedule.receptionTimes = newTimes.map { TimeReception(it, false) }
+                medicationSchedule.receptionTimes = newTimes.map { TimeReception(it, emptyList()) }
                 viewModel.update(medicationSchedule)
             }.show(supportFragmentManager, CountDialog.TAG)
         }
