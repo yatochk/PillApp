@@ -56,3 +56,23 @@ fun Date.isActiveDay(startDay: Date, endDay: Date): Boolean {
 
     return true
 }
+
+fun Date.isActiveDay(days: List<Date>): Boolean {
+    val current = Calendar.getInstance()
+    current.time = this
+
+    days.forEach {
+        val selectedDay = Calendar.getInstance().apply {
+            time = it
+        }
+        if (current.get(Calendar.YEAR) == selectedDay.get(Calendar.YEAR)
+            && current.get(Calendar.MONTH) == selectedDay.get(Calendar.MONTH)
+            && current.get(Calendar.DAY_OF_MONTH) == selectedDay.get(Calendar.DAY_OF_MONTH)
+        ) return true
+    }
+
+    return false
+}
+
+fun Date.isEqualsDay(day: Date) =
+    (this.time + DELTA_FIRST_DAY) / MILLS_PER_DAY == (day.time + DELTA_FIRST_DAY) / MILLS_PER_DAY

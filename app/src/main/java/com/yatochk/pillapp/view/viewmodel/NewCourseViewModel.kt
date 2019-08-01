@@ -29,7 +29,7 @@ class NewCourseViewModel @Inject constructor(
             dependencyOfEat = MedicationEat(15, EatType.BEFORE),
             endDate = Date(),
             startDate = Date(),
-            receptionTimes = getDefaultTimes().map { TimeReception(it, false) },
+            receptionTimes = getDefaultTimes().map { TimeReception(it, emptyList()) },
             type = medicationType
         )
     }
