@@ -48,14 +48,13 @@ class NotifyService : LifecycleService() {
                         set(Calendar.HOUR_OF_DAY, medicationTime.get(Calendar.HOUR_OF_DAY))
                         set(Calendar.MINUTE, medicationTime.get(Calendar.MINUTE))
                     }
-                    if (alarmTime.timeInMillis >= Date().time) {
-                        alarmManager.setInexactRepeating(
-                            AlarmManager.RTC,
-                            alarmTime.timeInMillis,
-                            medication.period,
-                            getMedicationIntent(medication)
-                        )
-                    }
+
+                    alarmManager.setRepeating(
+                        AlarmManager.RTC_WAKEUP,
+                        alarmTime.timeInMillis,
+                        medication.period,
+                        getMedicationIntent(medication)
+                    )
                 }
             }
     }
@@ -63,10 +62,10 @@ class NotifyService : LifecycleService() {
     private fun getMedicationIntent(medicationSchedule: MedicationSchedule): PendingIntent {
         val intent = Intent(this, NotifyReceiver::class.java).apply {
             action = MEDICATION_ACTION
-            putExtra(MEDICATION_ID, medicationSchedule.id)
+            putExtra(MEDICATION_ID, medicationSchedule.hashCode())
             putExtra(MEDICATION_NAME, medicationSchedule.name)
             putExtra(MEDICATION_TYPE, medicationSchedule.type.name)
         }
-        return PendingIntent.getBroadcast(this, REQUEST_ID, intent, 0)
+        return PendingIntent.getBroadcast(this, Date().time.toInt(), intent, 0)
     }
 }
