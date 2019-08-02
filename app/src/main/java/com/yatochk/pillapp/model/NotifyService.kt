@@ -21,7 +21,6 @@ class NotifyService : LifecycleService() {
     private lateinit var alarmManager: AlarmManager
 
     companion object {
-        private const val REQUEST_ID = 1345
         const val MEDICATION_NAME = "medication_name"
         const val MEDICATION_ID = "medication_id"
         const val MEDICATION_TYPE = "medication_type"
@@ -49,9 +48,15 @@ class NotifyService : LifecycleService() {
                         set(Calendar.MINUTE, medicationTime.get(Calendar.MINUTE))
                     }
 
+                    val firstTime =
+                        if (alarmTime.timeInMillis >= Date().time)
+                            alarmTime.timeInMillis
+                        else
+                            alarmTime.timeInMillis + medication.period
+
                     alarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP,
-                        alarmTime.timeInMillis,
+                        firstTime,
                         medication.period,
                         getMedicationIntent(medication)
                     )
