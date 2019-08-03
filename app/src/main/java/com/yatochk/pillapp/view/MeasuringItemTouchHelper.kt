@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yatochk.pillapp.view.adapter.PressureViewHolder
 import com.yatochk.pillapp.view.adapter.TemperatureViewHolder
 
-class RecyclerItemTouchHelper(
+class MeasuringItemTouchHelper(
     dragDirs: Int,
     swipeDirs: Int,
     private val listener: RecyclerItemTouchHelperListener

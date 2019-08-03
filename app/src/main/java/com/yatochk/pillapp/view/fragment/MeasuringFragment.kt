@@ -13,7 +13,7 @@ import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
 import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
-import com.yatochk.pillapp.view.RecyclerItemTouchHelper
+import com.yatochk.pillapp.view.MeasuringItemTouchHelper
 import com.yatochk.pillapp.view.adapter.MeasuringAdapter
 import com.yatochk.pillapp.view.viewmodel.MeasuringViewModel
 import kotlinx.android.synthetic.main.fragment_measuring.*
@@ -83,10 +83,10 @@ class MeasuringFragment : Fragment() {
         }
     }
 
-    private val itemTouchHelperCallback = RecyclerItemTouchHelper(
+    private val itemTouchHelperCallback = MeasuringItemTouchHelper(
         0,
         ItemTouchHelper.LEFT,
-        object : RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
+        object : MeasuringItemTouchHelper.RecyclerItemTouchHelperListener {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
                 viewModel.deleteSwipe(viewHolder.adapterPosition)
                 adapter.notifyItemRemoved(viewHolder.adapterPosition)
