@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.yatochk.pillapp.model.db.DateConverter
 import com.yatochk.pillapp.model.db.MeasuringTypeConverter
+import java.io.Serializable
 import java.util.*
 
 @Entity
@@ -15,6 +16,6 @@ import java.util.*
 data class Temperature(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
-    val temp: Double,
+    var temp: Double,
     val date: Date
-) : Measuring(MeasuringType.TEMPERATURE)
+) : Measuring(MeasuringType.TEMPERATURE), Serializable

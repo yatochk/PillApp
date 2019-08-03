@@ -19,6 +19,8 @@ class PressureAddViewModel @Inject constructor(
     private val mutableCancelView = MutableLiveData<Boolean>()
     val cancelView: LiveData<Boolean> = mutableCancelView
 
+    var editPressure: Pressure? = null
+
     fun save(
         date: Date,
         topPressure: String,
@@ -45,16 +47,26 @@ class PressureAddViewModel @Inject constructor(
         date: Date,
         topPressure: Int,
         bottomPressure: Int,
-        pulse: Int
+        newPulse: Int
     ) {
-        pressureRepository.save(
-            Pressure(
-                null,
-                topPressure,
-                bottomPressure,
-                pulse,
-                date
+        if (editPressure != null) {
+            pressureRepository.update(
+                editPressure!!.apply {
+                    top = topPressure
+                    bottom = bottomPressure
+                    pulse = newPulse
+                }
             )
-        )
+        } else {
+            pressureRepository.save(
+                Pressure(
+                    null,
+                    topPressure,
+                    bottomPressure,
+                    newPulse,
+                    date
+                )
+            )
+        }
     }
 }

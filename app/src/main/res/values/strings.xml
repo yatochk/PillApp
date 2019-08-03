@@ -17,6 +17,9 @@
     <string name="add_temperature_title">Add temperature</string>
     <string name="add_pressure_title">Add pressure</string>
 
+    <string name="edit_temperature_title">Edit temperature</string>
+    <string name="edit_pressure_title">Edit pressure</string>
+
     <string name="tool_back_description">back</string>
     <string name="add_date">Date</string>
     <string name="add_time">Time</string>

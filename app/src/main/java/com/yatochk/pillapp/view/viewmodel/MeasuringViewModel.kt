@@ -2,6 +2,7 @@ package com.yatochk.pillapp.view.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.hadilq.liveevent.LiveEvent
 import com.snakydesign.livedataextensions.combineLatest
 import com.snakydesign.livedataextensions.map
 import com.yatochk.pillapp.model.Measuring
@@ -38,6 +39,12 @@ class MeasuringViewModel @Inject constructor(
         }
     }
 
+    private val eventEditPressure = LiveEvent<Pressure>()
+    val editPressure: LiveData<Pressure> = eventEditPressure
+
+    private val eventEditTemperature = LiveEvent<Temperature>()
+    val editTemperature: LiveData<Temperature> = eventEditTemperature
+
     var measuring: LiveData<List<Measuring>> = sourceMeasuring
 
     fun today() {
@@ -63,6 +70,21 @@ class MeasuringViewModel @Inject constructor(
             } else {
                 (measuring as? Pressure)?.also {
                     pressureRepository.delete(it)
+                }
+            }
+        }
+    }
+
+    fun clickMeasuring(position: Int, type: MeasuringType) {
+        when (type) {
+            MeasuringType.PRESSURE -> {
+                (sourceMeasuring.value?.get(position) as? Pressure)?.also {
+                    eventEditPressure.value = it
+                }
+            }
+            MeasuringType.TEMPERATURE -> {
+                (sourceMeasuring.value?.get(position) as? Temperature)?.also {
+                    eventEditTemperature.value = it
                 }
             }
         }

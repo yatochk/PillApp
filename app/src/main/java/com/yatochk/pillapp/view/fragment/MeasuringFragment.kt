@@ -15,6 +15,8 @@ import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
 import com.yatochk.pillapp.view.MeasuringItemTouchHelper
 import com.yatochk.pillapp.view.adapter.MeasuringAdapter
+import com.yatochk.pillapp.view.add_schedule.PressureAddActivity
+import com.yatochk.pillapp.view.add_schedule.TemperatureAddActivity
 import com.yatochk.pillapp.view.viewmodel.MeasuringViewModel
 import kotlinx.android.synthetic.main.fragment_measuring.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -45,6 +47,16 @@ class MeasuringFragment : Fragment() {
         initToggle()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.editPressure.observe(this) {
+            activity?.startActivity(PressureAddActivity.newIntent(activity!!, it))
+        }
+        viewModel.editTemperature.observe(this) {
+            activity?.startActivity(TemperatureAddActivity.newIntent(activity!!, it))
+        }
+    }
+
     private fun initToggle() {
         toggle_date_period.setOnCheckedChangeListener { button, isChecked ->
             if (isChecked) {
@@ -69,7 +81,9 @@ class MeasuringFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        adapter = MeasuringAdapter()
+        adapter = MeasuringAdapter { position, type ->
+            viewModel.clickMeasuring(position, type)
+        }
         val decorator = StickyRecyclerHeadersDecoration(adapter)
         recycler_measuring.layoutManager = LinearLayoutManager(activity)
         recycler_measuring.adapter = adapter
