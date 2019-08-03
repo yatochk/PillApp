@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
 import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
+import com.yatochk.pillapp.view.RecyclerItemTouchHelper
 import com.yatochk.pillapp.view.adapter.MeasuringAdapter
 import com.yatochk.pillapp.view.viewmodel.MeasuringViewModel
 import kotlinx.android.synthetic.main.fragment_measuring.*
@@ -71,6 +74,7 @@ class MeasuringFragment : Fragment() {
         recycler_measuring.layoutManager = LinearLayoutManager(activity)
         recycler_measuring.adapter = adapter
         recycler_measuring.addItemDecoration(decorator)
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recycler_measuring)
     }
 
     private fun subscribes() {
@@ -78,4 +82,14 @@ class MeasuringFragment : Fragment() {
             adapter.updateMeasuring(it)
         }
     }
+
+    private val itemTouchHelperCallback = RecyclerItemTouchHelper(
+        0,
+        ItemTouchHelper.LEFT,
+        object : RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
+                viewModel.deleteSwipe(viewHolder.adapterPosition)
+                adapter.notifyItemRemoved(viewHolder.adapterPosition)
+            }
+        })
 }

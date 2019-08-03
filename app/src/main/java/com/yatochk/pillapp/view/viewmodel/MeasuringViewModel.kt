@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.snakydesign.livedataextensions.combineLatest
 import com.snakydesign.livedataextensions.map
 import com.yatochk.pillapp.model.Measuring
+import com.yatochk.pillapp.model.MeasuringType
 import com.yatochk.pillapp.model.Pressure
 import com.yatochk.pillapp.model.Temperature
 import com.yatochk.pillapp.model.db.pressure.PressureRepository
@@ -13,8 +14,8 @@ import com.yatochk.pillapp.utils.isCurrentDay
 import javax.inject.Inject
 
 class MeasuringViewModel @Inject constructor(
-    temperatureRepository: TemperatureRepository,
-    pressureRepository: PressureRepository
+    private val temperatureRepository: TemperatureRepository,
+    private val pressureRepository: PressureRepository
 ) : ViewModel() {
 
     private val sourceMeasuring = combineLatest(
@@ -48,6 +49,20 @@ class MeasuringViewModel @Inject constructor(
                     pItem.date.isCurrentDay()
                 } else {
                     item.date.isCurrentDay()
+                }
+            }
+        }
+    }
+
+    fun deleteSwipe(position: Int) {
+        sourceMeasuring.value?.get(position)?.also { measuring ->
+            if (measuring.type == MeasuringType.TEMPERATURE) {
+                (measuring as? Temperature)?.also {
+                    temperatureRepository.delete(it)
+                }
+            } else {
+                (measuring as? Pressure)?.also {
+                    pressureRepository.delete(it)
                 }
             }
         }
