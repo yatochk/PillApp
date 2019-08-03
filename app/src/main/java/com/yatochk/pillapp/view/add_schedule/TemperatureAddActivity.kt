@@ -1,9 +1,12 @@
 package com.yatochk.pillapp.view.add_schedule
 
+import android.content.Context
+import android.content.Intent
 import android.widget.Toast
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MessageType
+import com.yatochk.pillapp.model.Temperature
 import com.yatochk.pillapp.utils.*
 import com.yatochk.pillapp.view.viewmodel.TemperatureAddViewModel
 import kotlinx.android.synthetic.main.activity_add_temperature.*
@@ -11,12 +14,23 @@ import kotlinx.android.synthetic.main.activity_add_temperature.*
 
 class TemperatureAddActivity : MeasuringAddActivity() {
 
+    companion object {
+        private const val EDIT_TEMPERATURE = "edit_temperature"
+
+        fun newIntent(context: Context, temperature: Temperature) =
+            Intent(context, TemperatureAddActivity::class.java).apply {
+                putExtra(EDIT_TEMPERATURE, temperature)
+            }
+    }
+
     private val viewModel by lazy {
         injectViewModel(viewModelFactory) as TemperatureAddViewModel
     }
 
+    private lateinit var title: String
+
     override fun getTitleText(): String =
-        getString(R.string.add_temperature_title)
+        title
 
     override fun onClickAccept() {
         saveTemperature()
@@ -33,6 +47,12 @@ class TemperatureAddActivity : MeasuringAddActivity() {
     override fun initActivity() {
         setContentView(R.layout.activity_add_temperature)
         (application as MedicationApplication).component.injectActivity(this)
+        title = getString(R.string.add_temperature_title)
+        (intent.getSerializableExtra(EDIT_TEMPERATURE) as? Temperature)?.also {
+            viewModel.editTemperature = it
+            title = getString(R.string.edit_temperature_title)
+            edit_temperature.setText(it.temp.toString())
+        }
         subscribes()
         button_save.setOnClickListener {
             saveTemperature()

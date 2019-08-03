@@ -10,7 +10,9 @@ import com.yatochk.pillapp.model.Temperature
 import com.yatochk.pillapp.utils.DELTA_FIRST_DAY
 import com.yatochk.pillapp.utils.MILLS_PER_DAY
 
-class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+class MeasuringAdapter(
+    private val clickListener: (Int, MeasuringType) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     StickyRecyclerHeadersAdapter<MeasuringHeaderViewHolder> {
 
     companion object {
@@ -62,7 +64,13 @@ class MeasuringAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
         when (measuringList[position].type) {
-            MeasuringType.TEMPERATURE -> (holder as TemperatureViewHolder).bind(getItem(position) as Temperature)
-            MeasuringType.PRESSURE -> (holder as PressureViewHolder).bind(getItem(position) as Pressure)
+            MeasuringType.TEMPERATURE -> {
+                holder.itemView.setOnClickListener { clickListener(position, MeasuringType.TEMPERATURE) }
+                (holder as TemperatureViewHolder).bind(getItem(position) as Temperature)
+            }
+            MeasuringType.PRESSURE -> {
+                holder.itemView.setOnClickListener { clickListener(position, MeasuringType.PRESSURE) }
+                (holder as PressureViewHolder).bind(getItem(position) as Pressure)
+            }
         }
 }

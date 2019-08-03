@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.utils.injectViewModel
 import com.yatochk.pillapp.utils.observe
 import com.yatochk.pillapp.view.MainActivity
+import com.yatochk.pillapp.view.MeasuringItemTouchHelper
 import com.yatochk.pillapp.view.adapter.MeasuringAdapter
+import com.yatochk.pillapp.view.add_schedule.PressureAddActivity
+import com.yatochk.pillapp.view.add_schedule.TemperatureAddActivity
 import com.yatochk.pillapp.view.viewmodel.MeasuringViewModel
 import kotlinx.android.synthetic.main.fragment_measuring.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -42,6 +47,16 @@ class MeasuringFragment : Fragment() {
         initToggle()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.editPressure.observe(this) {
+            activity?.startActivity(PressureAddActivity.newIntent(activity!!, it))
+        }
+        viewModel.editTemperature.observe(this) {
+            activity?.startActivity(TemperatureAddActivity.newIntent(activity!!, it))
+        }
+    }
+
     private fun initToggle() {
         toggle_date_period.setOnCheckedChangeListener { button, isChecked ->
             if (isChecked) {
@@ -66,11 +81,14 @@ class MeasuringFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        adapter = MeasuringAdapter()
+        adapter = MeasuringAdapter { position, type ->
+            viewModel.clickMeasuring(position, type)
+        }
         val decorator = StickyRecyclerHeadersDecoration(adapter)
         recycler_measuring.layoutManager = LinearLayoutManager(activity)
         recycler_measuring.adapter = adapter
         recycler_measuring.addItemDecoration(decorator)
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recycler_measuring)
     }
 
     private fun subscribes() {
@@ -78,4 +96,14 @@ class MeasuringFragment : Fragment() {
             adapter.updateMeasuring(it)
         }
     }
+
+    private val itemTouchHelperCallback = MeasuringItemTouchHelper(
+        0,
+        ItemTouchHelper.LEFT,
+        object : MeasuringItemTouchHelper.RecyclerItemTouchHelperListener {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
+                viewModel.deleteSwipe(viewHolder.adapterPosition)
+                adapter.notifyItemRemoved(viewHolder.adapterPosition)
+            }
+        })
 }

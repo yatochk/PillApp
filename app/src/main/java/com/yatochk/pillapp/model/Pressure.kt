@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.yatochk.pillapp.model.db.DateConverter
 import com.yatochk.pillapp.model.db.MeasuringTypeConverter
+import java.io.Serializable
 import java.util.*
 
 @Entity
@@ -15,8 +16,8 @@ import java.util.*
 data class Pressure(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
-    val top: Int,
-    val bottom: Int,
-    val pulse: Int,
+    var top: Int,
+    var bottom: Int,
+    var pulse: Int,
     val date: Date
-) : Measuring(MeasuringType.PRESSURE)
+) : Measuring(MeasuringType.PRESSURE), Serializable

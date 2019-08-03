@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:orientation="horizontal"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
             android:layout_marginStart="16dp"
@@ -14,40 +15,62 @@
             android:layout_width="match_parent"
             android:layout_height="80dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <TextView android:id="@+id/temperature_time"
-                      tools:text="14:02"
-                      style="@style/TitleText"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      app:layout_constraintBottom_toBottomOf="parent"
-                      app:layout_constraintTop_toTopOf="parent"
-                      app:layout_constraintStart_toStartOf="parent"
-                      android:layout_marginStart="24dp"/>
+            <LinearLayout
+                    android:id="@+id/item_background"
+                    android:gravity="center_vertical |end"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/deleteColor">
 
-            <TextView android:id="@+id/temperature_value"
-                      style="@style/ValuesItem"
-                      tools:text="36.6"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      app:layout_constraintTop_toTopOf="parent"
-                      app:layout_constraintBottom_toBottomOf="parent"
-                      app:layout_constraintEnd_toEndOf="parent"
-                      android:layout_marginEnd="24dp"/>
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_temperature"
-                    android:id="@+id/imageView8"
-                    app:layout_constraintBottom_toBottomOf="@+id/temperature_value"
-                    app:layout_constraintTop_toTopOf="@+id/temperature_value"
-                    app:layout_constraintEnd_toStartOf="@+id/temperature_value"
-                    android:layout_marginEnd="8dp"
-                    tools:ignore="ContentDescription"/>
+                <ImageView
+                        app:srcCompat="@drawable/ic_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/temperature_foreground"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView android:id="@+id/temperature_time"
+                          tools:text="14:02"
+                          style="@style/TitleText"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintStart_toStartOf="parent"
+                          android:layout_marginStart="24dp"/>
+
+                <TextView android:id="@+id/temperature_value"
+                          style="@style/ValuesItem"
+                          tools:text="36.6"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          android:layout_marginEnd="24dp"/>
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_temperature"
+                        android:id="@+id/imageView8"
+                        app:layout_constraintBottom_toBottomOf="@+id/temperature_value"
+                        app:layout_constraintTop_toTopOf="@+id/temperature_value"
+                        app:layout_constraintEnd_toStartOf="@+id/temperature_value"
+                        android:layout_marginEnd="8dp"
+                        tools:ignore="ContentDescription"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
-</LinearLayout>
+</FrameLayout>

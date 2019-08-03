@@ -19,10 +19,13 @@ class TemperatureAddViewModel @Inject constructor(
     private val mutableCancelView = MutableLiveData<Boolean>()
     val cancelView: LiveData<Boolean> = mutableCancelView
 
+    var editTemperature: Temperature? = null
+
     fun save(
         date: Date,
         temperature: String
     ) {
+
         if (temperature.toDoubleOrNull() == null) {
             mutableMessage.value = MessageType.NOT_FILLED
         } else {
@@ -36,12 +39,20 @@ class TemperatureAddViewModel @Inject constructor(
         date: Date,
         temperature: Double
     ) {
-        temperatureRepository.save(
-            Temperature(
-                null,
-                temperature,
-                date
+        if (editTemperature != null) {
+            temperatureRepository.update(
+                editTemperature!!.apply {
+                    temp = temperature
+                }
             )
-        )
+        } else {
+            temperatureRepository.save(
+                Temperature(
+                    null,
+                    temperature,
+                    date
+                )
+            )
+        }
     }
 }
