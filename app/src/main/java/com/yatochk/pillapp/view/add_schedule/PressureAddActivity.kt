@@ -52,9 +52,9 @@ class PressureAddActivity : MeasuringAddActivity() {
         title = getString(R.string.add_pressure_title)
         (intent.getSerializableExtra(EDIT_PRESSURE) as? Pressure)?.also {
             viewModel.editPressure = it
-            edit_top_pressure.setText(it.top)
-            edit_bottom_pressure.setText(it.bottom)
-            if (it.pulse != 0) edit_pulse.setText(it.pulse)
+            edit_top_pressure.setText(it.top.toString())
+            edit_bottom_pressure.setText(it.bottom.toString())
+            if (it.pulse != 0) edit_pulse.setText(it.pulse.toString())
             title = getString(R.string.edit_pressure_title)
         }
         subscribes()
