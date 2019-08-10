@@ -1,6 +1,7 @@
 package com.yatochk.pillapp.dagger
 
 import android.app.Application
+import com.google.android.gms.ads.MobileAds
 import com.yatochk.pillapp.dagger.components.AppComponent
 import com.yatochk.pillapp.dagger.components.DaggerAppComponent
 import com.yatochk.pillapp.dagger.module.AppModule
@@ -12,5 +13,6 @@ class MedicationApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         component = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        MobileAds.initialize(this) {}
     }
 }
