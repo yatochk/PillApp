@@ -3,6 +3,7 @@ package com.yatochk.pillapp.view.add_schedule
 import android.view.View
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.model.MedicationType
+import com.yatochk.pillapp.utils.getDefaultAdRequest
 import com.yatochk.pillapp.view.ToolActivity
 import kotlinx.android.synthetic.main.activity_add_medication.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -16,6 +17,11 @@ class MedicationAddActivity : ToolActivity() {
         setContentView(R.layout.activity_add_medication)
         button_tool_accept.visibility = View.INVISIBLE
         initButtons()
+        loadAd()
+    }
+
+    private fun loadAd() {
+        medication_ad_view.loadAd(getDefaultAdRequest())
     }
 
     private fun initButtons() {

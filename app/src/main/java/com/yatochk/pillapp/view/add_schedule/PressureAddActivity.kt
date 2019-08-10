@@ -7,10 +7,7 @@ import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MessageType
 import com.yatochk.pillapp.model.Pressure
-import com.yatochk.pillapp.utils.injectViewModel
-import com.yatochk.pillapp.utils.observe
-import com.yatochk.pillapp.utils.toSimpleDate
-import com.yatochk.pillapp.utils.toTime
+import com.yatochk.pillapp.utils.*
 import com.yatochk.pillapp.view.viewmodel.PressureAddViewModel
 import kotlinx.android.synthetic.main.activity_add_pressure.*
 
@@ -63,6 +60,11 @@ class PressureAddActivity : MeasuringAddActivity() {
         }
         edit_data.setOnClickListener { requestDate() }
         edit_time.setOnClickListener { requestTime() }
+        loadAd()
+    }
+
+    private fun loadAd() {
+        pressure_ad_view.loadAd(getDefaultAdRequest())
     }
 
     override fun onResume() {

@@ -3,6 +3,7 @@ package com.yatochk.pillapp.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
@@ -10,6 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.dagger.ViewModelFactory
+import com.yatochk.pillapp.model.NotifyService
+import com.yatochk.pillapp.utils.getDefaultAdRequest
 import com.yatochk.pillapp.view.add_schedule.MedicationAddActivity
 import com.yatochk.pillapp.view.add_schedule.PressureAddActivity
 import com.yatochk.pillapp.view.add_schedule.TemperatureAddActivity
@@ -109,5 +112,19 @@ class MainActivity : AppCompatActivity() {
         nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         initFloatingMenu()
         initStartFragment()
+        startService()
+        loadAd()
+    }
+
+    private fun loadAd() {
+        main_ad_view.loadAd(getDefaultAdRequest())
+    }
+
+    private fun startService() {
+        try {
+            startService(Intent(this, NotifyService::class.java))
+        } catch (e: IllegalStateException) {
+            Log.e("Start Notify Service", "")
+        }
     }
 }
