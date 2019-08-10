@@ -104,6 +104,11 @@ class NewCourseActivity : ToolActivity() {
         }
         initButtons()
         dateRequester = RequestDateTime(this)
+        loadAd()
+    }
+
+    private fun loadAd() {
+        course_ad_view.loadAd(getDefaultAdRequest())
     }
 
     private fun initButtons() {

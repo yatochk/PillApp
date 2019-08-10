@@ -59,6 +59,11 @@ class TemperatureAddActivity : MeasuringAddActivity() {
         }
         edit_data.setOnClickListener { requestDate() }
         edit_time.setOnClickListener { requestTime() }
+        loadAd()
+    }
+
+    private fun loadAd() {
+        temperature_ad_view.loadAd(getDefaultAdRequest())
     }
 
     override fun onResume() {
