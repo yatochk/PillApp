@@ -31,7 +31,7 @@
             android:id="@+id/button_save"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/pressure_ad_view"
             android:layout_marginBottom="24dp"/>
 
     <TextView
@@ -132,6 +132,7 @@
             android:layout_marginStart="24dp"
             app:layout_constraintTop_toTopOf="@+id/edit_pulse"
             app:layout_constraintBottom_toBottomOf="@+id/edit_pulse"/>
+
     <androidx.constraintlayout.widget.Barrier
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,5 +141,13 @@
             app:constraint_referenced_ids="textView,textView3,textView4"
             tools:layout_editor_absoluteX="411dp"/>
 
+    <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/pressure_ad"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/pressure_ad_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

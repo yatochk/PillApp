@@ -68,6 +68,9 @@
     <string name="daily">Every day</string>
     <string name="weekly">Every 2 day</string>
 
-    <color name="deleteColor">#E91E63</color>
-
+    <string name="main_ad" translatable="false">number</string>
+    <string name="course_ad" translatable="false">number</string>
+    <string name="medication_ad" translatable="false">number</string>
+    <string name="temperature_ad" translatable="false">number</string>
+    <string name="pressure_ad" translatable="false">number</string>
 </resources>

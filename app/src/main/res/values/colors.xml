@@ -26,4 +26,6 @@
     <color name="not_activated_item">@color/colorPrimary</color>
 
     <color name="time_bg_color">@color/colorPrimaryDark</color>
+
+    <color name="deleteColor">#E91E63</color>
 </resources>
