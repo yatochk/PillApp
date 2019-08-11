@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             .hide(oldFragment)
             .addToBackStack(oldFragment.tag)
         if (currentFragment is MeasuringFragment) {
-            transaction.add(R.id.main_frame, currentFragment, MeasuringFragment.TAG)
+            transaction.add(R.id.recycler_frame, currentFragment, MeasuringFragment.TAG)
         } else {
             transaction.show(currentFragment)
         }
@@ -101,22 +101,51 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStartFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_frame, medicationFragment, MedicationFragment.TAG)
-            .add(R.id.main_frame, homeFragment, HomeFragment.TAG)
+            .add(R.id.recycler_frame, medicationFragment, MedicationFragment.TAG)
+            .add(R.id.recycler_frame, homeFragment, HomeFragment.TAG)
             .hide(medicationFragment)
             .commit()
     }
+
+    private lateinit var exitDialog: ExitDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         (application as MedicationApplication).component.injectActivity(this)
+        exitDialog = getExitDialog()
         nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         initFloatingMenu()
         initStartFragment()
         startService()
         initRemoteConfig()
         initAd()
+    }
+
+    private var isExit = false
+    override fun onBackPressed() {
+        if (isExit) {
+            isExit = false
+            exitDialog.cancel()
+        } else {
+            isExit = true
+            main_ad_view.isVisible = false
+            container_exit.isVisible = true
+            exitDialog.show(container_exit)
+        }
+    }
+
+    private fun getExitDialog(): ExitDialog {
+        val dialog = ExitDialog(this)
+        dialog.loadAds()
+        dialog.setOnCancelListener {
+            container.isClickable = true
+            container.isFocusable = true
+            container_exit.isVisible = false
+            main_ad_view.isVisible = true
+            isExit = false
+        }
+        return dialog
     }
 
     private fun initRemoteConfig() {

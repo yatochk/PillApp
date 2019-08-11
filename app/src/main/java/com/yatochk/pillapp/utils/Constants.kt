@@ -14,5 +14,6 @@ object RemoteConfigConstant {
     const val MEDICATION_AD = "medication_ad"
     const val TEMPERATURE_AD = "temperature_ad"
     const val PRESSURE_AD = "pressure_ad"
+    const val EXIT_AD = "exit_ad"
 
 }
