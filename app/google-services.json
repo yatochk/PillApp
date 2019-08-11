@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "726639775821",
+    "firebase_url": "https://pill-app-10ebb.firebaseio.com",
+    "project_id": "pill-app-10ebb",
+    "storage_bucket": "pill-app-10ebb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726639775821:android:170273ad41aa2983",
+        "android_client_info": {
+          "package_name": "com.yatochk.pillapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726639775821-lebeibf9vhihskurra5oacfc3eg8rh00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP3aijboBxtgd6QZQXODN9UidZySzYMTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726639775821-lebeibf9vhihskurra5oacfc3eg8rh00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

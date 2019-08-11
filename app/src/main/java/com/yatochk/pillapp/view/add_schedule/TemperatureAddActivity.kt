@@ -3,6 +3,8 @@ package com.yatochk.pillapp.view.add_schedule
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.core.view.isVisible
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MessageType
@@ -63,7 +65,12 @@ class TemperatureAddActivity : MeasuringAddActivity() {
     }
 
     private fun loadAd() {
-        temperature_ad_view.loadAd(getDefaultAdRequest())
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigConstant.TEMPERATURE_AD)) {
+            temperature_ad_view.isVisible = true
+            temperature_ad_view.loadAd(getDefaultAdRequest())
+        } else {
+            temperature_ad_view.isVisible = false
+        }
     }
 
     override fun onResume() {

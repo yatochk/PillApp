@@ -1,8 +1,11 @@
 package com.yatochk.pillapp.view.add_schedule
 
 import android.view.View
+import androidx.core.view.isVisible
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.model.MedicationType
+import com.yatochk.pillapp.utils.RemoteConfigConstant
 import com.yatochk.pillapp.utils.getDefaultAdRequest
 import com.yatochk.pillapp.view.ToolActivity
 import kotlinx.android.synthetic.main.activity_add_medication.*
@@ -21,7 +24,12 @@ class MedicationAddActivity : ToolActivity() {
     }
 
     private fun loadAd() {
-        medication_ad_view.loadAd(getDefaultAdRequest())
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigConstant.MEDICATION_AD)) {
+            medication_ad_view.isVisible = true
+            medication_ad_view.loadAd(getDefaultAdRequest())
+        } else {
+            medication_ad_view.isVisible = false
+        }
     }
 
     private fun initButtons() {

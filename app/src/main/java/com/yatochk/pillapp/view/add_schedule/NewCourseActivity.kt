@@ -3,9 +3,11 @@ package com.yatochk.pillapp.view.add_schedule
 import android.content.Context
 import android.content.Intent
 import android.text.Editable
+import androidx.core.view.isVisible
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MedicationSchedule
@@ -108,7 +110,12 @@ class NewCourseActivity : ToolActivity() {
     }
 
     private fun loadAd() {
-        course_ad_view.loadAd(getDefaultAdRequest())
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigConstant.COURSE_AD)) {
+            course_ad_view.isVisible = true
+            course_ad_view.loadAd(getDefaultAdRequest())
+        } else {
+            course_ad_view.isVisible = false
+        }
     }
 
     private fun initButtons() {
