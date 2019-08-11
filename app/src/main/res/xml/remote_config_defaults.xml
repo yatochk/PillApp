@@ -20,4 +20,8 @@
         <key>pressure_ad</key>
         <value>true</value>
     </entry>
+    <entry>
+        <key>exit_ad</key>
+        <value>true</value>
+    </entry>
 </defaultsMap>
