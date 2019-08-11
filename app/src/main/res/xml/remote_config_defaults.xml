@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>main_ad</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>course_ad</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>medication_ad</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>temperature_ad</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>pressure_ad</key>
+        <value>true</value>
+    </entry>
+</defaultsMap>

@@ -3,6 +3,8 @@ package com.yatochk.pillapp.view.add_schedule
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.core.view.isVisible
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.MessageType
@@ -64,7 +66,12 @@ class PressureAddActivity : MeasuringAddActivity() {
     }
 
     private fun loadAd() {
-        pressure_ad_view.loadAd(getDefaultAdRequest())
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigConstant.PRESSURE_AD)) {
+            pressure_ad_view.isVisible = true
+            pressure_ad_view.loadAd(getDefaultAdRequest())
+        } else {
+            pressure_ad_view.isVisible = false
+        }
     }
 
     override fun onResume() {

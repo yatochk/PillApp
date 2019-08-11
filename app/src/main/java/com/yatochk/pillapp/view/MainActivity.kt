@@ -5,13 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.yatochk.pillapp.R
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.dagger.ViewModelFactory
 import com.yatochk.pillapp.model.NotifyService
+import com.yatochk.pillapp.utils.RemoteConfigConstant
 import com.yatochk.pillapp.utils.getDefaultAdRequest
 import com.yatochk.pillapp.view.add_schedule.MedicationAddActivity
 import com.yatochk.pillapp.view.add_schedule.PressureAddActivity
@@ -39,7 +42,6 @@ class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val medicationFragment = MedicationFragment()
-    //private val measuringFragment = MeasuringFragment()
 
     private var oldFragment: Fragment = homeFragment
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 medicationFragment
             }
             R.id.navigation_measuring -> {
-                MeasuringFragment() //TODO временное решение из-за проблем с itemDecorations
+                MeasuringFragment()
             }
             else -> throw IllegalArgumentException(WRONG_FRAGMENT)
         }
@@ -113,11 +115,37 @@ class MainActivity : AppCompatActivity() {
         initFloatingMenu()
         initStartFragment()
         startService()
-        loadAd()
+        initRemoteConfig()
+        initAd()
     }
 
-    private fun loadAd() {
-        main_ad_view.loadAd(getDefaultAdRequest())
+    private fun initRemoteConfig() {
+        FirebaseRemoteConfig.getInstance().apply {
+            setDefaults(R.xml.remote_config_defaults)
+            fetchAndActivate().addOnCompleteListener(this@MainActivity) { task ->
+                if (task.isSuccessful) {
+                    Log.d(
+                        "RemoteConfig",
+                        "Config params updated: ${task.result}\n" +
+                                "Enable main ad = ${getBoolean(RemoteConfigConstant.MAIN_AD)}\n" +
+                                "Enable medication ad = ${getBoolean(RemoteConfigConstant.MEDICATION_AD)}\n" +
+                                "Enable course ad = ${getBoolean(RemoteConfigConstant.COURSE_AD)}\n" +
+                                "Enable pressure ad = ${getBoolean(RemoteConfigConstant.PRESSURE_AD)}\n" +
+                                "Enable temperature ad = ${getBoolean(RemoteConfigConstant.TEMPERATURE_AD)}\n"
+                    )
+                    initAd()
+                }
+            }
+        }
+    }
+
+    private fun initAd() {
+        if (FirebaseRemoteConfig.getInstance().getBoolean(RemoteConfigConstant.MAIN_AD)) {
+            main_ad_view.isVisible = true
+            main_ad_view.loadAd(getDefaultAdRequest())
+        } else {
+            main_ad_view.isVisible = false
+        }
     }
 
     private fun startService() {
