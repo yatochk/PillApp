@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_measuring">Metingen</string>
+    <string name="title_medication">Geneesmiddelen</string>
+    <string name="title_new_course">Nieuwe koers</string>
+
+    <string name="add_medication">Geneesmiddelen</string>
+    <string name="add_temperature">Temperatuur opvoeren</string>
+    <string name="add_pressure">Druk opvoeren</string>
+
+    <string name="add_medication_title">Geneesmiddelen</string>
+    <string name="add_temperature_title">Temperatuur opvoeren</string>
+    <string name="add_pressure_title">Druk opvoeren</string>
+
+    <string name="title_edit_course">Wijzigen</string>
+    <string name="edit_temperature_title">Wijzigen</string>
+    <string name="edit_pressure_title">Wijzigen</string>
+
+    <string name="add_date">Datum</string>
+    <string name="add_time">Tijd</string>
+
+    <string name="bottom_pressure">Onder</string>
+    <string name="top_pressure">Boven</string>
+    <string name="pulse">Polsslag</string>
+
+    <string name="add_tablet">Pilletje</string>
+    <string name="add_capsule">Capsule</string>
+    <string name="add_drops">Druppels</string>
+    <string name="add_injection">Injecties</string>
+    <string name="add_mixture">Mengsel</string>
+    <string name="add_spray">Spuitbus</string>
+    <string name="add_powder">Poeder</string>
+    <string name="add_ointment">Zalf</string>
+    <string name="add_suppository_capsule">Zetpillen</string>
+    <string name="add_other">Ander</string>
+
+    <string name="measuring_today">Vandaag</string>
+    <string name="measuring_period">Periode</string>
+
+    <string name="dosage">Dosering %1$s</string>
+    <string name="count_in_day">%1$s keer per dag</string>
+
+    <string name="before_eat">voor het eten</string>
+    <string name="after_eat">na het eten</string>
+    <string name="on_eat">onafhankelijk van het eten</string>
+
+    <string name="hint_name">Naam</string>
+
+    <string name="complete_course">Afwerken</string>
+    <string name="change_course">Wijzigen</string>
+    <string name="delete_course">Verwijderen</string>
+
+    <string name="time_for_eat">minuten</string>
+
+    <string name="daily">dagelijks</string>
+    <string name="weekly">om de dag</string>
+</resources>

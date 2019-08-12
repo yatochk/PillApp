@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_measuring">Mérések</string>
+    <string name="title_medication">Orvosságok</string>
+    <string name="title_new_course">Új kúra</string>
+
+    <string name="add_medication">Orvosságok</string>
+    <string name="add_temperature">Hőmérséklet hozzáadása</string>
+    <string name="add_pressure">Vérnyomás hozzáadása</string>
+
+    <string name="add_medication_title">Orvosságok</string>
+    <string name="add_temperature_title">Hőmérséklet hozzáadása</string>
+    <string name="add_pressure_title">Vérnyomás hozzáadása</string>
+
+    <string name="title_edit_course">Megváltoztatni</string>
+    <string name="edit_temperature_title">Megváltoztatni</string>
+    <string name="edit_pressure_title">Megváltoztatni</string>
+
+    <string name="add_date">Dátum</string>
+    <string name="add_time">Időpont</string>
+
+    <string name="bottom_pressure">Lejjebb</string>
+    <string name="top_pressure">Feljebb</string>
+    <string name="pulse">Pulzus</string>
+
+    <string name="add_tablet">Tabletta</string>
+    <string name="add_capsule">Kapszula</string>
+    <string name="add_drops">Cseppek</string>
+    <string name="add_injection">Injekciók</string>
+    <string name="add_mixture">Keverék</string>
+    <string name="add_spray">Spray</string>
+    <string name="add_powder">Por</string>
+    <string name="add_ointment">Kenőcs</string>
+    <string name="add_suppository_capsule">Kúpok</string>
+    <string name="add_other">Más</string>
+
+    <string name="measuring_today">Ma</string>
+    <string name="measuring_period">Időszak</string>
+
+    <string name="dosage">Adagolás %1$s</string>
+    <string name="count_in_day">Naponta %1$s</string>
+
+    <string name="before_eat">étkezés előtt</string>
+    <string name="after_eat">étkezés után</string>
+    <string name="on_eat">étkezéstől függetlenül</string>
+
+    <string name="hint_name">Megnevezés</string>
+
+    <string name="complete_course">Befejezni</string>
+    <string name="change_course">Megváltoztatni</string>
+    <string name="delete_course">Eltávolítani</string>
+
+    <string name="time_for_eat">perccel</string>
+
+    <string name="daily">naponta</string>
+    <string name="weekly">egy nap múlva</string>
+</resources>

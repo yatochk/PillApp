@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_measuring">Измерения</string>
+    <string name="title_medication">Лекарство</string>
+    <string name="title_new_course">Новый курс</string>
+    <string name="title_edit_course">Изменить курс</string>
+
+    <string name="add_medication">Лекарство</string>
+    <string name="add_temperature">Температура</string>
+    <string name="add_pressure">Давление</string>
+
+    <string name="add_medication_title">Добавить лекарство</string>
+    <string name="add_temperature_title">Добавить температуру</string>
+    <string name="add_pressure_title">Добавить давление</string>
+
+    <string name="edit_temperature_title">Изменить температуру</string>
+    <string name="edit_pressure_title">Изменить давление</string>
+
+    <string name="add_date">Дата</string>
+    <string name="add_time">Время</string>
+
+    <string name="save_message">Сохранено!</string>
+    <string name="not_filled_message">Сначала заполните поля</string>
+    <string name="bottom_pressure">Нижнее давление</string>
+    <string name="top_pressure">Верхнее давление</string>
+    <string name="pulse">Пульс</string>
+
+    <string name="add_tablet">Таблетка</string>
+    <string name="add_capsule">Капсула</string>
+    <string name="add_drops">Капли</string>
+    <string name="add_injection">Уколы</string>
+    <string name="add_mixture">Микстура</string>
+    <string name="add_spray">Спрей</string>
+    <string name="add_powder">Порошок</string>
+    <string name="add_ointment">Мазь</string>
+    <string name="add_suppository_capsule">Свечи</string>
+    <string name="add_other">Другое</string>
+    <string name="measuring_today">Сегодня</string>
+    <string name="measuring_period">Период</string>
+
+    <string name="dosage">Дозировка %1$s</string>
+    <string name="count_in_day">%1$s раз в день</string>
+
+    <string name="before_eat">Перед едой</string>
+    <string name="after_eat">После еды</string>
+    <string name="on_eat">Во время еды</string>
+
+    <string name="whatever_eat">Зависимость от еды</string>
+    <string name="text_end">Конец %1$s in %2$s</string>
+    <string name="text_start_in">Начало %1$s in %2$s</string>
+    <string name="hint_name">Название лекарства</string>
+    <string name="complete_course">Завершить</string>
+    <string name="change_course">Изменить</string>
+    <string name="delete_course">Удалить</string>
+    <string name="pick_times_in_day">Количество в день</string>
+    <string name="ok">OK</string>
+    <string name="dependency_of_eat">Зависимость от еды</string>
+
+    <string name="time_for_eat">Минут</string>
+    <string name="hint_eat_time">15</string>
+
+    <string name="notify_msg">Время приема</string>
+
+    <string name="daily">Ежедневно</string>
+    <string name="weekly">Через день</string>
+
+    <string name="exit_title">Выход</string>
+    <string name="exit_description">Вы уверены, что хотите закрыть?</string>
+    <string name="cancel_btn">Отмена</string>
+    <string name="exit_btn">Выйти</string>
+</resources>

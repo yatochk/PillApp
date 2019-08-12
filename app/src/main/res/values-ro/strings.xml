@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_measuring">Medicamente</string>
+    <string name="title_medication">Medicamente</string>
+    <string name="title_new_course">Curs nou</string>
+
+    <string name="add_medication">Medicamente</string>
+    <string name="add_temperature">Adăogă temperatură</string>
+    <string name="add_pressure">Adăogă presiune</string>
+
+    <string name="add_medication_title">Medicamente</string>
+    <string name="add_temperature_title">Sıcaklık ekle</string>
+    <string name="add_pressure_title">Kan basıncı ekle</string>
+
+    <string name="title_edit_course">Modifică</string>
+    <string name="edit_temperature_title">Modifică</string>
+    <string name="edit_pressure_title">Modifică</string>
+
+    <string name="add_date">Data</string>
+    <string name="add_time">Ora</string>
+
+    <string name="bottom_pressure">Jos</string>
+    <string name="top_pressure">Sus</string>
+    <string name="pulse">Puls</string>
+
+    <string name="add_tablet">Pastilă</string>
+    <string name="add_capsule">Capsulă</string>
+    <string name="add_drops">Picături</string>
+    <string name="add_injection">Injecții</string>
+    <string name="add_mixture">Mixtură</string>
+    <string name="add_spray">Spray</string>
+    <string name="add_powder">Praf</string>
+    <string name="add_ointment">Unguent</string>
+    <string name="add_suppository_capsule">Supozitoare</string>
+    <string name="add_other">Altele</string>
+
+    <string name="measuring_today">Astăzi</string>
+    <string name="measuring_period">Perioada</string>
+
+    <string name="dosage">%1$s</string>
+    <string name="count_in_day">%1$s</string>
+
+    <string name="before_eat">înainte de masă</string>
+    <string name="after_eat">după masă</string>
+    <string name="on_eat">indiferent de masă</string>
+
+    <string name="hint_name">Nume</string>
+
+    <string name="complete_course">Termină</string>
+    <string name="change_course">Modifică</string>
+    <string name="delete_course">Șterge</string>
+
+    <string name="time_for_eat">minute</string>
+
+    <string name="daily">zilnic</string>
+    <string name="weekly">în fiecare zi</string>
+</resources>

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">PillApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name" translatable="false">PillApp</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
 
     <string name="title_measuring">Measuring</string>
     <string name="title_medication">Medication</string>
@@ -11,7 +11,7 @@
 
     <string name="add_medication">Medication</string>
     <string name="add_temperature">Temperature</string>
-    <string name="add_pressure">Pressure</string>
+    <string name="add_pressure">Blood Pressure</string>
 
     <string name="add_medication_title">Add medication</string>
     <string name="add_temperature_title">Add temperature</string>
@@ -20,7 +20,7 @@
     <string name="edit_temperature_title">Edit temperature</string>
     <string name="edit_pressure_title">Edit pressure</string>
 
-    <string name="tool_back_description">back</string>
+    <string name="tool_back_description" translatable="false">back</string>
     <string name="add_date">Date</string>
     <string name="add_time">Time</string>
 
@@ -46,9 +46,9 @@
     <string name="dosage">Dosage is %1$s</string>
     <string name="count_in_day">%1$s times in day</string>
 
-    <string name="before_eat">Before eat</string>
-    <string name="after_eat">After eat</string>
-    <string name="on_eat">In time of eat</string>
+    <string name="before_eat">Before meal</string>
+    <string name="after_eat">After meal</string>
+    <string name="on_eat">In time of meal</string>
 
     <string name="whatever_eat">Whatever eat</string>
     <string name="text_end">End %1$s in %2$s</string>
@@ -58,15 +58,15 @@
     <string name="change_course">Change</string>
     <string name="delete_course">Delete</string>
     <string name="pick_times_in_day">Pick times in day</string>
-    <string name="ok">OK</string>
+    <string name="ok" translatable="false">OK</string>
     <string name="dependency_of_eat">Dependency of eat</string>
-    <string name="time_for_eat">Minute</string>
-    <string name="hint_eat_time">15</string>
+    <string name="time_for_eat">Minutes</string>
+    <string name="hint_eat_time" translatable="false">15</string>
 
     <string name="notify_msg">Pill ready</string>
 
     <string name="daily">Every day</string>
-    <string name="weekly">Every 2 day</string>
+    <string name="weekly">Every second day</string>
 
     //Exit dialog
     <string name="exit_title">Exit</string>

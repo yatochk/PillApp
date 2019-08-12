@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_measuring">Pomiary</string>
+    <string name="title_medication">Lekarstwa</string>
+    <string name="title_new_course">Новый курс-Nowy cykl</string>
+    <string name="title_edit_course">Zmienić</string>
+
+    <string name="add_medication">Lekarstwa</string>
+    <string name="add_temperature">Dodać temperaturę</string>
+    <string name="add_pressure">Dodać ciśnienie</string>
+
+    <string name="add_medication_title">Lekarstwa</string>
+    <string name="add_temperature_title">Dodać temperaturę</string>
+    <string name="add_pressure_title">Dodać ciśnienie</string>
+
+    <string name="edit_temperature_title">Zmienić</string>
+    <string name="edit_pressure_title">Zmienić</string>
+
+    <string name="add_date">Data</string>
+    <string name="add_time">Czas</string>
+
+    <string name="bottom_pressure">Dolne</string>
+    <string name="top_pressure">Górne</string>
+    <string name="pulse">Puls</string>
+
+    <string name="add_tablet">Tabletka</string>
+    <string name="add_capsule">Kapsułka</string>
+    <string name="add_drops">Krople</string>
+    <string name="add_injection">Zastrzyki</string>
+    <string name="add_mixture">Mikstura</string>
+    <string name="add_spray">Spray</string>
+    <string name="add_powder">Proszek</string>
+    <string name="add_ointment">Maść</string>
+    <string name="add_suppository_capsule">Czopki</string>
+    <string name="add_other">Inne</string>
+
+    <string name="measuring_today">Dzisiaj</string>
+    <string name="measuring_period">Okres</string>
+
+    <string name="dosage">Dozowanie %1$s</string>
+    <string name="count_in_day">%1$s razy dziennie</string>
+
+    <string name="before_eat">Przed posiłkiem</string>
+    <string name="after_eat">Po posiłku</string>
+    <string name="on_eat">Niezależnie od posiłku</string>
+
+    <string name="hint_name">Nazwa</string>
+
+    <string name="complete_course">Zakończyć</string>
+    <string name="change_course">Zmienić</string>
+    <string name="delete_course">Usunąć</string>
+
+    <string name="time_for_eat">minut</string>
+
+    <string name="daily">Codziennie</string>
+    <string name="weekly">Następnego dnia</string>
+</resources>
