@@ -34,7 +34,7 @@
     <string name="add_suppository_capsule">Suppositoires</string>
     <string name="add_other">Autre</string>
 
-    <string name="measuring_today">Aujourd'hui</string>
+    <string name="measuring_today">Aujourd\'hui</string>
     <string name="measuring_period">Période</string>
 
     <string name="dosage">Dosage is %1$s</string>
