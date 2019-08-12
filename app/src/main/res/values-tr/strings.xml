@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_measuring">Ölçümler</string>
+    <string name="title_medication">Medication</string>
+    <string name="title_new_course">Yeni kür</string>
+    <string name="title_edit_course">Değiştir</string>
+
+    <string name="add_medication">İlaçlar</string>
+    <string name="add_temperature">Sıcaklık</string>
+    <string name="add_pressure">Kan basıncı</string>
+
+    <string name="add_medication_title">Yeni kür</string>
+    <string name="add_temperature_title">Sıcaklık ekle</string>
+    <string name="add_pressure_title">Kan basıncı ekle</string>
+
+    <string name="edit_temperature_title">Değiştir</string>
+    <string name="edit_pressure_title">Değiştir</string>
+
+    <string name="add_date">Tarih</string>
+    <string name="add_time">Saat</string>
+
+    <string name="bottom_pressure">Aşağı</string>
+    <string name="top_pressure">Yukarı</string>
+    <string name="pulse">Nabız</string>
+
+    <string name="add_tablet">Hap</string>
+    <string name="add_capsule">Kapsül</string>
+    <string name="add_drops">Damla</string>
+    <string name="add_injection">İğne</string>
+    <string name="add_mixture">Şurup</string>
+    <string name="add_spray">Sprey</string>
+    <string name="add_powder">Toz</string>
+    <string name="add_ointment">Merhem</string>
+    <string name="add_suppository_capsule">Fitiller</string>
+    <string name="add_other">Diğer</string>
+    <string name="measuring_today">Bugün</string>
+    <string name="measuring_period">Dönem</string>
+
+    <string name="dosage">Dozu %1$s</string>
+    <string name="count_in_day">Günde %1$s defa</string>
+
+    <string name="before_eat">Yemekten önce</string>
+    <string name="after_eat">Yemekten sonra</string>
+    <string name="on_eat">Yemekten bağımsız</string>
+
+    <string name="hint_name">İlaçlar</string>
+
+    <string name="complete_course">Bitir</string>
+    <string name="change_course">Değiştir</string>
+    <string name="delete_course">Sil</string>
+
+    <string name="ok">OK</string>
+
+    <string name="time_for_eat">Dakika</string>
+    <string name="hint_eat_time">15</string>
+
+    <string name="daily">Her gün</string>
+    <string name="weekly">Gün aşırı</string>
+</resources>
