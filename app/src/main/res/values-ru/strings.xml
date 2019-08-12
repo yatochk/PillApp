@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_measuring">Измерения</string>
-    <string name="title_medication">Лекарство</string>
+    <string name="title_medication">Лекарства</string>
     <string name="title_new_course">Новый курс</string>
     <string name="title_edit_course">Изменить курс</string>
 
-    <string name="add_medication">Лекарство</string>
+    <string name="add_medication">Лекарства</string>
     <string name="add_temperature">Температура</string>
     <string name="add_pressure">Давление</string>
 
