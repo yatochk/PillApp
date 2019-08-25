@@ -24,8 +24,8 @@
     <string name="add_date">Date</string>
     <string name="add_time">Time</string>
 
-    <string name="save_message">Saved!</string>
-    <string name="not_filled_message">Before filled value</string>
+    <string name="save_message" translatable="false">Saved!</string>
+    <string name="not_filled_message" translatable="false">Before filled value</string>
     <string name="bottom_pressure">Bottom pressure</string>
     <string name="top_pressure">Top pressure</string>
     <string name="pulse">Pulse</string>
@@ -63,7 +63,7 @@
     <string name="time_for_eat">Minutes</string>
     <string name="hint_eat_time" translatable="false">15</string>
 
-    <string name="notify_msg">Pill ready</string>
+    <string name="notify_msg" translatable="false">Pill ready</string>
 
     <string name="daily">Every day</string>
     <string name="weekly">Every second day</string>
