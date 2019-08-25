@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleService
 import com.yatochk.pillapp.dagger.MedicationApplication
 import com.yatochk.pillapp.model.db.medication.MedicationScheduleDao
 import com.yatochk.pillapp.utils.isActive
+import com.yatochk.pillapp.utils.isEqualsDay
 import com.yatochk.pillapp.utils.observe
 import java.util.*
 import javax.inject.Inject
@@ -39,29 +40,37 @@ class NotifyService : LifecycleService() {
     private fun initSchedule(medications: List<MedicationSchedule>) {
         medications.filter { Date().isActive(it.startDate, it.endDate) }
             .forEach { medication ->
-                medication.receptionTimes.forEach { timeReception ->
-                    val alarmTime = Calendar.getInstance().apply {
-                        val medicationTime = Calendar.getInstance()
-                        medicationTime.time = Date(timeReception.time)
+                medication.receptionTimes.filter { !currentDayIsChecked(it.checkedDays) }
+                    .forEach { timeReception ->
+                        val alarmTime = Calendar.getInstance().apply {
+                            val medicationTime = Calendar.getInstance()
+                            medicationTime.time = Date(timeReception.time)
 
-                        set(Calendar.HOUR_OF_DAY, medicationTime.get(Calendar.HOUR_OF_DAY))
-                        set(Calendar.MINUTE, medicationTime.get(Calendar.MINUTE))
+                            set(Calendar.HOUR_OF_DAY, medicationTime.get(Calendar.HOUR_OF_DAY))
+                            set(Calendar.MINUTE, medicationTime.get(Calendar.MINUTE))
+                        }
+
+                        val firstTime =
+                            if (alarmTime.timeInMillis >= Date().time)
+                                alarmTime.timeInMillis
+                            else
+                                alarmTime.timeInMillis + medication.period
+
+                        alarmManager.setRepeating(
+                            AlarmManager.RTC_WAKEUP,
+                            firstTime,
+                            medication.period,
+                            getMedicationIntent(medication)
+                        )
                     }
-
-                    val firstTime =
-                        if (alarmTime.timeInMillis >= Date().time)
-                            alarmTime.timeInMillis
-                        else
-                            alarmTime.timeInMillis + medication.period
-
-                    alarmManager.setRepeating(
-                        AlarmManager.RTC_WAKEUP,
-                        firstTime,
-                        medication.period,
-                        getMedicationIntent(medication)
-                    )
-                }
             }
+    }
+
+    private fun currentDayIsChecked(checkedList: List<Long>): Boolean {
+        checkedList.map { Date(it) }.forEach {
+            if (Date().isEqualsDay(it)) return true
+        }
+        return false
     }
 
     private fun getMedicationIntent(medicationSchedule: MedicationSchedule): PendingIntent {
