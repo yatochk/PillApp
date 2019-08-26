@@ -36,25 +36,8 @@ fun Date.isActive(startDate: Date, endDate: Date): Boolean =
     this.before(endDate) && this.after(startDate)
 
 fun Date.isActiveDay(startDay: Date, endDay: Date): Boolean {
-    val current = Calendar.getInstance()
-    current.time = this
-    val start = Calendar.getInstance().apply {
-        time = startDay
-    }
-    val end = Calendar.getInstance().apply {
-        time = endDay
-    }
-    if (current.get(Calendar.YEAR) > end.get(Calendar.YEAR)
-        || current.get(Calendar.YEAR) < start.get(Calendar.YEAR)
-    ) return false
-    if (current.get(Calendar.MONTH) > end.get(Calendar.MONTH)
-        || current.get(Calendar.MONTH) < start.get(Calendar.MONTH)
-    ) return false
-    if (current.get(Calendar.DAY_OF_MONTH) > end.get(Calendar.DAY_OF_MONTH)
-        || current.get(Calendar.DAY_OF_MONTH) < start.get(Calendar.DAY_OF_MONTH)
-    ) return false
-
-    return true
+    return this.before(endDay) && this.after(startDay)
+            || this.isEqualsDay(startDay) || this.isEqualsDay(endDay)
 }
 
 fun Date.isActiveDay(days: List<Date>): Boolean {
