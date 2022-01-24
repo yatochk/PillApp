@@ -66,12 +66,19 @@ class NotifyWorker(
     }
 
     private fun sendNotificationIfNeeded() {
-        medicationScheduleDao.getMedicationsIntermediate()
-            .find { it.id == medicationId }?.let {
-                if (Date().isActive(it.startDate, it.endDate)) {
-                    sendNotify()
-                }
-            }
+        val today = Date()
+        val currentMedication = medicationScheduleDao.getMedicationsIntermediate().find {
+            it.id == medicationId
+        }
+        if (currentMedication != null && today.notificationNeeded(currentMedication)) {
+            sendNotify()
+        }
+    }
+
+    private fun Date.notificationNeeded(it: MedicationSchedule): Boolean {
+        return isActive(it.startDate, it.endDate) && it.receptionTimes.any {
+            !it.isCheckedForDay(this)
+        }
     }
 
     private fun sendNotify() {

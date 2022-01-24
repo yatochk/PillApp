@@ -15,7 +15,8 @@ class NotifyService : LifecycleService() {
     @Inject
     lateinit var medicationScheduleDao: MedicationScheduleDao
 
-    private lateinit var workManager: WorkManager
+    @Inject
+    lateinit var workManager: WorkManager
 
     companion object {
         const val MEDICATION_NAME = "medication_name"
@@ -29,7 +30,6 @@ class NotifyService : LifecycleService() {
         medicationScheduleDao.getMedications().observe(this) {
             initSchedule(it)
         }
-        workManager = WorkManager.getInstance(applicationContext)
     }
 
     private fun initSchedule(medications: List<MedicationSchedule>) {
@@ -78,7 +78,7 @@ class NotifyService : LifecycleService() {
 
         var firstTime = alarmTime.timeInMillis
         if (alarmTime.timeInMillis < Date().time) {
-            firstTime = +medicationSchedule.period
+            firstTime += medicationSchedule.period
         }
         return firstTime - Date().time
     }

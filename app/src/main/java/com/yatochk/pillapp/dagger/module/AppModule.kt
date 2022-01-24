@@ -3,6 +3,7 @@ package com.yatochk.pillapp.dagger.module
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import androidx.work.WorkManager
 import com.yatochk.pillapp.model.db.PillDatabase
 import com.yatochk.pillapp.model.db.medication.MedicationScheduleDao
 import dagger.Module
@@ -32,4 +33,9 @@ class AppModule(private val app: Application) {
     @Provides
     fun provideMedicationScheduleDao(pillScheduleDao: PillDatabase): MedicationScheduleDao =
         pillScheduleDao.medicationScheduleDao
+
+    @Provides
+    fun provideWorkManager(): WorkManager {
+        return WorkManager.getInstance(app)
+    }
 }
