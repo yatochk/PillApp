@@ -30,7 +30,7 @@ class DosageDialog(
     private fun initChoiceList() {
         list_dosage.choiceMode = ListView.CHOICE_MODE_SINGLE
         val adapter = ArrayAdapter.createFromResource(
-            activity,
+            requireContext(),
             R.array.dosages_pill,
             android.R.layout.simple_list_item_single_choice
         )

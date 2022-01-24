@@ -9,6 +9,9 @@ interface MedicationScheduleDao {
     @Query("SELECT * FROM MedicationSchedule")
     fun getMedications(): LiveData<List<MedicationSchedule>>
 
+    @Query("SELECT * FROM MedicationSchedule")
+    fun getMedicationsIntermediate(): List<MedicationSchedule>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addSchedule(medicationSchedule: MedicationSchedule)
 
